@@ -1,0 +1,34 @@
+		<h4>Using Map over multiple elements</h4>
+		<ul class="post-list">
+			<li>Change the input to the below code<pre>
+					<code class="language-markup post-code ">
+&lt;students>
+	&lt;student>
+		&lt;firstname>Jane&lt;/firstname>
+		&lt;lastname>Doe&lt;/lastname>
+		&lt;dob>13th July 2006&lt;/dob>
+	&lt;/student>
+	&lt;student>
+		&lt;firstname>Emma&lt;/firstname>
+		&lt;lastname>Watkins&lt;/lastname>
+		&lt;dob>1st November 2003&lt;/dob>
+	&lt;/student>
+&lt;/students>					</code>
+				</pre></li>
+			<li>In the editor, change dataweave to the below code<pre>
+					<code class="post-code langauge-javascript">
+%dw 1.0
+%output application/json
+---
+payload.students map {
+	'student$$': {
+		name: $.firstname ++ " " ++ $.lastname,
+		date-of-birth: $.dob
+	}
+}
+</code>
+				</pre>
+			<li>The output should be this <img src="images/dw-7.JPG"
+				class="post-img img-responsive">
+			</li>
+		</ul>

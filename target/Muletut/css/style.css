@@ -1,0 +1,168 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+html, body {
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	font-family: "OpenSans", Helvetica, Arial, sans-serif;
+	font-weight: 400;
+	font-size: 16px;
+	s
+}
+
+div#main {
+	background: #0077b5;
+	height: 100%;
+}
+
+/*************************************
+************** Header ***************
+**************************************/
+div#main header {
+	height: 7.5%;
+}
+
+.navbar-default {
+	background-color: transparent !important;
+	border-color: transparent;
+	background-image: none;
+	box-shadow: none;
+}
+
+.navbar, .navbar-defualt, .navbar-header {
+	padding: 0px !important;
+	margin: 0px !important;
+}
+
+div#main header #navbar-header {
+	border: none;
+}
+
+div#main ul#nav-menu {
+	height: 100%;
+	line-height: 100%;
+}
+
+div#main ul#nav-menu li a {
+	color: #fff;
+}
+/*************************************
+********** Main Content **************
+**************************************/
+div#main-content {
+	background: #f4f5f6;
+	background: linear-gradient(to right, #f4f5f6, #fff 10%, #fff 100%, #fff 100%);
+	height: auto;
+}
+/*************************************
+************** Sidebar ***************
+**************************************/
+div#main-content aside {
+	background: #f4f5f6;
+	height: auto;
+	padding-right: 0px;
+}
+
+div#main-content aside div {
+	
+}
+
+div#main-content aside div ul {
+	list-style: none;
+	margin: 0;
+}
+
+div#main-content aside div ul li {
+	padding: 10px 0px 15px;
+}
+
+div#main-content aside div ul li a {
+	text-decoration: none;
+	color: #000;
+	display: block;
+}
+
+div#main-content aside div ul li a.active {
+	text-decoration: none;
+	color: #0077b5;
+}
+
+div#main-content aside div ul li.active {
+	background: #fff;
+	border: 1px solid #0077b5;
+	border-right: 0px;
+	border-top-left-radius: 3px;
+	border-bottom-left-radius: 3px;
+	font-size: 15px;
+	padding-left: 5px;
+	font-size: 15px;
+}
+
+div#main-content aside div ul li.active.first {
+	border-top: 0px;
+	border-top-left-radius: 0px;
+}
+
+/*************************************
+************** Content ***************
+**************************************/
+div#main-content div#post {
+	/* 		background: green; */
+	height: auto;
+}
+
+div#main-content div#post div#post-area {
+	background: white;
+	/* 	margin-top: 1px; */
+	width: 100%;
+	height: auto;
+	font-family: "OpenSans", Helvetica, Arial, sans-serif;
+	color: #58595a;
+	word-spacing: 2px !important;
+}
+
+hr.dotted-line {
+	border: none;
+	border-top: 2px dotted #f4f5f6;
+}
+
+div#main-content div#post div#post-area .alert {
+	padding-top: 5px !important;
+	margin-top: 10px;
+}
+/*****************Scroll*****************/
+a#scroll-up {
+	bottom: 20px;
+	position: fixed;
+	right: 20px;
+	display: none;
+	opacity: 0.5;
+	filter: alpha(opacity = 50); /* For IE8 and earlier */
+}
+
+a#scroll-up span {
+	font-size: 40px;
+	color: #289dcc;
+}
+
+a#scroll-up:hover {
+	opacity: 1;
+	filter: alpha(opacity = 100); /* For IE8 and earlier */
+}
+/******************************
+********change window************
+*******************************/
+@media screen and (max-width: 758px) {
+	div#main-content aside {
+		display: none;
+	}
+}
+
+@media screen and (min-width: 759px) {
+	div#main-content aside {
+		display: inherit;
+	}
+}

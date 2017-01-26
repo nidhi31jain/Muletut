@@ -1,1 +1,2 @@
-com\muletut\MuletutController.class
+com\muletut\controller\MuletutController.class
+com\muletut\entity\Tutorial.class
