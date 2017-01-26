@@ -23,7 +23,7 @@
 			<li>Selecting <mark>AccountNumber, Description, Id, Name</mark>,
 				the query will be <code>SELECT AccountNumber, Description,
 					Id, Name FROM Account</code></li>
-			<li>Add a transformer and write this script<pre>
+			<li>Add a transformer and write the given script<pre>
 					<code class="language-javascript post-code">
 %dw 1.0
 %output application/java
@@ -42,7 +42,7 @@ payload map {
 				<p class="alert alert-info"></p>
 			</li>
 		</ul>
-		<h4>Create</h4>
+		<h4>Create New Object</h4>
 		<ul class="post-list">
 			<li>Drop a HTTP connector in source section</li>
 			<li>In POST request, XML data will be sent to the app<pre>
@@ -59,7 +59,6 @@ payload map {
 &lt;/Accounts>
 </code>
 				</pre></li>
-			<li>Add DOM to XML transformer</li>
 			<li>Add Transform Message component and write this script there
 				<pre>
 					<code class="language-javascript post-code">
@@ -70,15 +69,41 @@ payload.Accounts.*Account map ((account , indexOfAccount) -> {
 	Name: account.Name,
 	Description: account.Description
 })</code>
-				</pre>
-				Output format is Java because Salesforce expects a List of Accounts as input
+				</pre> Output format is Java because Salesforce expects a List of Accounts
+				as input
 			</li>
 			<li>Add Salesforce Connector and change the operation to <mark>Create</mark><img
 				src="images/sf-3.JPG" class="post-img img-responsive"></li>
 		</ul>
-		<h4>Update</h4>
+		<h4>Update Object</h4>
 		<ul class="post-list">
-			<li>
+			<li>Add HTTP connector to source section of flow</li>
+			<li>XML of the records to update is as<pre>
+					<code class="language-markup post-code">
+&lt;Accounts>
+	&lt;Account>
+	&lt;Id>0016F00001rFHCkQAO&lt;/Id>
+		&lt;Name>Resident Evil&lt;/Name>
+	&lt;/Account>
+	&lt;Account>
+	&lt;Id>0016F00001rFHDXQA4&lt;/Id>
+		&lt;Name>Underworld&lt;/Name>
+	&lt;/Account>
+&lt;/Accounts></code>
+				</pre></li>
+			<li>Add a Transform Message component, write the following
+				Dataweave script in it<pre>
+					<code class="language-javascript post-code">
+%dw 1.0
+%output application/java
+---
+payload.Accounts.*Account map ((account , indexOfAccount) -> {
+	Id: account.Id,
+	Name: account.Name
+})					</code>
+				</pre>
+			</li>
+			<li>Add Salesforce Connector and change the operation to <mark>Update</mark></li>
 		</ul>
 	</div>
 </section>
