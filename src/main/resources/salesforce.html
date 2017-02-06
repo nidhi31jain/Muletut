@@ -82,11 +82,11 @@ payload.Accounts.*Account map ((account , indexOfAccount) -> {
 					<code class="language-markup post-code">
 &lt;Accounts>
 	&lt;Account>
-	&lt;Id>0016F00001rFHCkQAO&lt;/Id>
+		&lt;Id>0016F00001rFHCkQAO&lt;/Id>
 		&lt;Name>Resident Evil&lt;/Name>
 	&lt;/Account>
 	&lt;Account>
-	&lt;Id>0016F00001rFHDXQA4&lt;/Id>
+		&lt;Id>0016F00001rFHDXQA4&lt;/Id>
 		&lt;Name>Underworld&lt;/Name>
 	&lt;/Account>
 &lt;/Accounts></code>
@@ -104,6 +104,25 @@ payload.Accounts.*Account map ((account , indexOfAccount) -> {
 				</pre>
 			</li>
 			<li>Add Salesforce Connector and change the operation to <mark>Update</mark></li>
+		</ul>
+		<h4>Delete Object</h4>
+		<ul class="post-list">
+			<li>Id of the record to delete is given in XML as<pre>
+					<code class="language-markup post-code">
+&lt;Id>0016F00001bl5dfQAA&lt;/Id></code>
+				</pre></li>
+			<li>Dataweave script<pre>
+					<code class="language-javascript post-code">
+%dw 1.0
+%output application/java
+---
+payload.Accounts.*Account map ((account , indexOfAccount) -> {
+	Id: account.Id,
+	Name: account.Name
+})					</code>
+				</pre>
+			</li>
+			<li>Add Salesforce Connector and change the operation to <mark>Delete</mark></li>
 		</ul>
 	</div>
 </section>
