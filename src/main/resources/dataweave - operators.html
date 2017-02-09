@@ -135,7 +135,7 @@ string: ["Mule","ESB"] joinBy " "
 				</pre></li>
 		</ul>
 		<h4>OrderBy, DistinctBy</h4>
-		<strong>OrderBy</strong> returns the array/object in descending order.
+		<strong>OrderBy</strong> returns the array/object in ascending order.<br>
 		<strong>DistinctBy</strong> returns unique values from the array.
 		<ul class="post-list">
 			<li>Transform<pre>
@@ -152,7 +152,13 @@ string: ["Mule","ESB"] joinBy " "
   "w",
   "y"
 ]</code>
-				</pre></li>
+				</pre>
+				<p class="alert alert-info">
+					To order array/object in descending order, simply invert the order
+					of the array/object. <strong>(["q","w","e","r","t","y","y"]
+						orderBy $)[-1..0]</strong>
+				</p></li>
+
 		</ul>
 		<h4>GroupBy</h4>
 		<h4>Flatten</h4>
@@ -168,13 +174,34 @@ String: "Mule Enterprise Service Bus" replace /[a-z]/ with "z"</code>
 {
   "String": "Mzzz Ezzzzzzzzz Szzzzzz Bzz"
 }</code>
-				</pre>
-				<p class="alert alert-info">Instead of /../, you can use ".."
-					also, but only when the value inside is simple string/char, not a
-					regex</p></li>
+				</pre></li>
 		</ul>
 		<h4>StartsWith, EndsWith</h4>
-		<h4>Upper, Lower, Ccamelize, Capitalize, Dasherize</h4>
+		<strong>StartsWith</strong> return true or false depending on if
+		string starts with given substring. <br>
+		<strong>EndsWith</strong> return true or false depending on if string
+		ending with given substring.
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+%dw 1.0
+%output application/json
+---
+{
+	true: "Mule" startsWith "Mu",
+	false: "tutorials" endsWith "as"
+}</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+{
+  "true": true,
+  "false": false
+}</code>
+				</pre>
+			</li>
+		</ul>
+		<h4>Upper, Lower, Camelize, Capitalize, Dasherize</h4>
 		<ul class="post-list">
 			<li>Transform<pre>
 					<code class="post-code langauge-javascript">
@@ -220,6 +247,71 @@ string: trim "    mule tutorials      "</code>
 			</li>
 		</ul>
 		<h4>Substring</h4>
+		Returns a set of characters based on the indices provided.
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+%dw 1.0
+%output application/json
+---
+{
+string: "mule tutorias" [1..6],
+string: "mule tutorias" [-1..-6]
+}</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+{
+  "string": "ule tu",
+  "string": "sairot"
+}</code>
+				</pre>
+				<p class="alert alert-info">
+					First case, i.e; [1..6], means include 1st index and go till 5th.
+					Indexing starts from 0.<br> Second case, [-1..-6], means
+					starting from the last element go till the 6th last element.
+				</p>
+			</li>
+		</ul>
+
 		<h3>Mathematical Operators</h3>
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+%dw 1.0
+%output application/json
+---
+{
+add: 3+4,
+subtract: 3-4,
+multiply: 3*4,
+divsision: 3/4,
+max: max [3,4],
+min: min [3,4],
+round: round 3.4,
+sqrt: sqrt 4,
+power: 3 pow 4,
+ceil: ceil 3.4,
+floor: floor 3.4
+}</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+{
+  "add": 7,
+  "subtract": -1,
+  "multiply": 12,
+  "divsision": 0.75,
+  "max": 4,
+  "min": 3,
+  "round": 3,
+  "sqrt": 2.0,
+  "power": 81,
+  "ceil": 4,
+  "floor": 3
+}</code>
+				</pre>
+			</li>
+		</ul>
 	</div>
 </section>
