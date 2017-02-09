@@ -1,4 +1,9 @@
 <section>
+	<div>The Salesforce connector enables you to connect directly
+		with Salesforce platform. The methods exposed allows to do almost all
+		the Salesforce operations which can be done via Salesforce API.</div>
+</section>
+<section>
 	<div>
 		<ul class="post-list">
 			<li>Include the Salesforce connector in source section of flow
@@ -116,10 +121,8 @@ payload.Accounts.*Account map ((account , indexOfAccount) -> {
 %dw 1.0
 %output application/java
 ---
-payload.Accounts.*Account map ((account , indexOfAccount) -> {
-	Id: account.Id,
-	Name: account.Name
-})					</code>
+Id: payload.Id
+</code>
 				</pre>
 			</li>
 			<li>Add Salesforce Connector and change the operation to <mark>Delete</mark></li>

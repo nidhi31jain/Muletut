@@ -1,3 +1,5 @@
+<section>
+	<div>
 		<h4>Using Map over multiple elements</h4>
 		<ul class="post-list">
 			<li>Change the input to the below code<pre>
@@ -27,8 +29,197 @@ payload.students map {
 	}
 }
 </code>
-				</pre>
+				</pre></li>
 			<li>The output should be this <img src="images/dw-7.JPG"
 				class="post-img img-responsive">
 			</li>
 		</ul>
+		<h4>Filter</h4>
+		Returns an array with elements that passed the filtering criteria.
+		<ul class="post-list">
+			<li>Transform <pre>
+					<code class="post-code language-javascript">
+%dw 1.0
+%output application/json
+---
+animals: ["Dog", "Cat", "Man", "Lion"] filter $ != "Man"</code>
+				</pre></li>
+			<li>Output<pre>
+									<code class="post-code language-javascript">
+{
+  "animals": [
+    "Dog",
+    "Cat",
+    "Lion"
+  ]
+}</code>
+				</pre></li>
+			<li>You can use logical operators like <strong>>, &lt;,
+					==, !=, not, and, or </strong>
+			</li>
+			<li><pre>
+					<code class="post-code language-javscript">
+animals: ["Dog", "Cat", "Man", "Lion"] filter $ == "Man"
+animals: ["Dog", "Cat", "Man", "Lion"] filter $ != "Man" and $ != "Cat"				
+animals: ["Dog", "Cat", "Man", "Lion"] filter not $ != "Man"</code>
+				</pre></li>
+		</ul>
+		<h4>Remove</h4>
+		Returns an array with specified element removed
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code language-javscript">
+%dw 1.0
+%output application/json
+---
+animals: ["Dog", "Cat", "Man", "Lion"] - "Cat"
+		</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code language-javscript">
+{
+  "animals": [
+    "Dog",
+    "Man",
+    "Lion"
+  ]
+}		</code>
+				</pre></li>
+			<li>To remove more than one element, use <strong>--</strong></li>
+			<li>Transform<pre>
+					<code class="post-code language-javscript">
+animals: ["Dog", "Cat", "Man", "Lion"] -- ["Cat", "Man"]
+		</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code language-javscript">
+{
+  "animals": [
+    "Dog",
+    "Lion"
+  ]
+}		</code>
+				</pre></li>
+
+		</ul>
+		<h4>When..Otherwise</h4>
+		<h4>Unless..Otherwise</h4>
+		<h4>SplitBy, JoinBy</h4>
+		SplitBy splits a string into an array
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+"Mule ESB" splitBy " "</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+[
+  "Mule",
+  "ESB"
+]</code>
+				</pre></li>
+		</ul>
+		<strong>joinBy</strong> is opposite of <strong>splitBy</strong>,
+		merging an array into string.
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+string: ["Mule","ESB"] joinBy " "
+</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+{
+  "string": "Mule ESB"
+}</code>
+				</pre></li>
+		</ul>
+		<h4>OrderBy, DistinctBy</h4>
+		<strong>OrderBy</strong> returns the array/object in descending order.
+		<strong>DistinctBy</strong> returns unique values from the array.
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+(["q","w","e","r","t","y","y"] orderBy $ ) distinctBy $</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+[
+  "e",
+  "q",
+  "r",
+  "t",
+  "w",
+  "y"
+]</code>
+				</pre></li>
+		</ul>
+		<h4>GroupBy</h4>
+		<h4>Flatten</h4>
+		<h4>Replace</h4>
+		Replace a part of string according to a regular expression.
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+String: "Mule Enterprise Service Bus" replace /[a-z]/ with "z"</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+{
+  "String": "Mzzz Ezzzzzzzzz Szzzzzz Bzz"
+}</code>
+				</pre>
+				<p class="alert alert-info">Instead of /../, you can use ".."
+					also, but only when the value inside is simple string/char, not a
+					regex</p></li>
+		</ul>
+		<h4>StartsWith, EndsWith</h4>
+		<h4>Upper, Lower, Ccamelize, Capitalize, Dasherize</h4>
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+%dw 1.0
+%output application/json
+---
+{
+string1: upper "mule tutorials",
+string2: lower "mule tutorials",
+string3: camelize "mule_tutorials",
+string4: capitalize "mule TUTORIALS",
+string5: dasherize "mule tutorials"
+}</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+{
+  "string1": "MULE TUTORIALS",
+  "string2": "mule tutorials",
+  "string3": "muleTutorials",
+  "string4": "Mule Tutorials",
+  "string5": "mule-tutorials"
+}</code>
+				</pre>
+			</li>
+		</ul>
+		<h4>Trim</h4>
+		Removes any excess leading or trailing spaces in string
+		<ul class="post-list">
+			<li>Transform<pre>
+					<code class="post-code langauge-javascript">
+%dw 1.0
+%output application/json
+---
+string: trim "    mule tutorials      "</code>
+				</pre></li>
+			<li>Output<pre>
+					<code class="post-code langauge-javascript">
+{
+  "string": "mule tutorials"
+}</code>
+				</pre>
+			</li>
+		</ul>
+		<h4>Substring</h4>
+		<h3>Mathematical Operators</h3>
+	</div>
+</section>

@@ -15,6 +15,7 @@
 						<ul id="nav-menu" class="nav navbar-nav navbar-right">
 							<li class="active"><a href="#">Home</a></li>
 							<li><a href="references.html">References</a></li>
+							<li><a href="#">Cloudhub</a></li>
 							<li><a href="#">Blog</a></li>
 							<li><a href="#">About me</a></li>
 							<li><form:form commandName="search" action="search.html"

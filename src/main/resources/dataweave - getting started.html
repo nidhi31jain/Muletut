@@ -162,7 +162,8 @@ payload map {
     &lt;actor>Maury Sterling&lt;/actor>
   &lt;/actors>
 &lt;/movie></code>
-				</pre></li>
+				</pre>
+			</li>
 		</ul>
 	</div>
 	<h4>JSON to XML 2</h4>
@@ -199,7 +200,7 @@ payload map {
 %dw 1.0
 %output application/xml
 ---
-movies: {
+movies @(id:'listOfMovies'): {
 	(payload map {
 		movie: {
 			name: $.title,
@@ -217,7 +218,7 @@ movies: {
 		<li>Output<pre>
 					<code class="post-code language-markup">
 &lt;?xml version='1.0' encoding='windows-1252'?>
-&lt;movies>
+&lt;movies id="listOfMovies">
   &lt;movie>
     &lt;name>Coherence&lt;/name>
     &lt;director>James Ward Byrkit&lt;/director>
@@ -241,7 +242,17 @@ movies: {
     &lt;/actors>
   &lt;/movie>
 &lt;/movies></code>
-				</pre></li>
+				</pre>
+			<p class="alert alert-info">
+				Wrap the map operation in <strong>{(..)}</strong> when mapping array
+				elements(JSON or JAVA) to XML
+			</p>
+			<p class="alert alert-info">
+				Notice the
+				<mark>@(id:"listOfMovies")</mark>
+				in transformation code to add the attribute <strong>id</strong> to <strong>movies</strong>
+				tag in final XML
+			</p></li>
 	</ul>
 </section>
 <section>

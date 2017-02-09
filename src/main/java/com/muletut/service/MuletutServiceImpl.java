@@ -26,11 +26,11 @@ public class MuletutServiceImpl implements MuletutService {
 	/************* Add Menu Items ***************/
 	public boolean addMenuItems() throws MuletutException {
 		String[] menuItemsNames = new String[] { "overview", "environment setup",
-				"building your first mule application", "flows", "http", "file", "database", "variable", "java",
+				"building your first mule application", "flows", "HTTP", "HTTP - SECURITY", "file", "database", "variable", "java",
 				"entry point resolver", "invoke", "dataweave - getting started", "dataweave - operators", "filters",
 				"catch exception strategy", "reference exception strategy", "choice exception strategy", "object store",
 				"batch processing", "java virtual machine(VM)", "JMS", "for each", "choice", "poll", "scatter gather",
-				"collection splitter", "collection aggregator", "composite source", "property", "salesforce", "web service consumer", "async", "sftp" };
+				"collection splitter", "collection aggregator", "composite source", "property", "salesforce", "web service consumer", "async", "SFTP", "CXF" };
 		return daoService.addMenuItems(menuItemsNames);
 
 	}
