@@ -31,7 +31,15 @@
 			<li>In Dataweave editor, change the <mark>application/java</mark>
 				to <mark>application/json</mark> and write payload<img
 				src="images/dw-3.JPG" class="post-img img-responsive">
-				<p class="alert alert-info"></p>
+				<p class="alert alert-info">
+					The first line
+					<code>%dw 1.0</code>
+					<code>%output application/json</code>
+					called the output directive sets the output type of transformation. There can be more directives also like namespace, var, input etc</strong><br>The
+					three hyphens, in next line, are expected by the DataWeave engine
+					to understand where the transformation starts.<br>After that
+					we have body, where we can define our transformation code.
+				</p>
 			</li>
 			<li>Click on Preview. And Bam, XML is converted to JSON that
 				easily.</li>
@@ -63,8 +71,6 @@ payload map {
 			</li>
 			<li>The preview is like this <img src="images/dw-5.JPG"
 				class="post-img img-responsive">
-				<p class="alert alert-info">Spaces are not allowed in key names.
-					date-of-birth is okay, but 'date of birth' will give error</p></li>
 		</ul>
 		<h4>Accessing the Attribute</h4>
 		<ul class="post-list">
