@@ -48,6 +48,26 @@ public class MuletutController {
 
 	}
 
+	@RequestMapping("/index.html")
+	public String getMenuHTML(ModelMap model, HttpServletRequest request) {
+		ArrayList<String> menuItems;
+		try {
+			SearchForm searchForm = new SearchForm();
+			if (muletutService.addMenuItems()) {
+				menuItems = muletutService.getMenu();
+				model.addAttribute("search", searchForm);
+				model.addAttribute("menuItems", menuItems);
+				return "index";
+			} else {
+				return "index";
+			}
+		} catch (MuletutException e) {
+			e.printStackTrace();
+			return "index";
+		}
+
+	}
+
 	/**
 	 * Method to get tutorial
 	 * 
@@ -74,6 +94,28 @@ public class MuletutController {
 		return "references";
 	}
 
+	/**
+	 * Method to fetch cloudhub page and cloud menu items
+	 * @return
+	 */
+	@RequestMapping("/cloudhub.html")
+	public String getCloud(ModelMap model, HttpServletRequest request) {
+		ArrayList<String> menuItems;
+		try {
+			SearchForm searchForm = new SearchForm();
+			if (muletutService.addMenuItems()) {
+				menuItems = muletutService.getMenu();
+				model.addAttribute("search", searchForm);
+				model.addAttribute("menuItems", menuItems);
+				return "cloudhub";
+			} else {
+				return "cloudhub";
+			}
+		} catch (MuletutException e) {
+			e.printStackTrace();
+			return "cloudhub";
+		}
+	}
 	/**
 	 * Method to search
 	 * 
