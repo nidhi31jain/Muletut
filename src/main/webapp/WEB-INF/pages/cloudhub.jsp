@@ -15,15 +15,10 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<%-- 		<c:import url="header.jsp"></c:import>	 --%>
-		<footer>
-			<script
-				src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-			<script src="js/script.js"></script>
-			<script src="prism/prism.js"></script>
-			<script
-				src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-		</footer>
+		<div id="main-content" class="container-fluid row">
+		</div>
+
+		<%@ include file="footer.jsp"%>
 	</div>
 </body>
 </html>

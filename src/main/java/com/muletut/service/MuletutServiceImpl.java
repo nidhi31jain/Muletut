@@ -30,7 +30,7 @@ public class MuletutServiceImpl implements MuletutService {
 				"entry point resolver", "invoke", "dataweave - getting started", "dataweave - operators", "dataweave - selectors", "filters",
 				"catch exception strategy", "reference exception strategy", "choice exception strategy", "object store",
 				"batch processing", "java virtual machine(VM)", "JMS", "for each", "choice", "poll", "scatter gather",
-				"collection splitter", "collection aggregator", "composite source", "property", "salesforce", "web service consumer", "async", "SFTP", "CXF" };
+				"collection splitter", "collection aggregator", "composite source", "property", "salesforce", "web service consumer", "async", "SFTP" };
 		return daoService.addMenuItems(menuItemsNames);
 
 	}

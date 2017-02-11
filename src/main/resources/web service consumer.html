@@ -1,40 +1,167 @@
 <section>
 	<div>
-		Mule can process message in batches. It has the ability split payload
-		into a batch of records and process them, report them or just push to
-		another system. This is particularly handy when processing a large
-		file or a large set of data from database.
-		<p>A batch job is an independent block of code with four phases.</p>
+		<h3>Setting up the web service</h3>
 		<ul class="post-list">
-			<li>Input: Have a message or source or series of processors to
-				prepare data.</li>
-			<li>Load and Dispatch: Mule splits the payload into a collection
-				and save them in queue. It is an implicit phase.</li>
-			<li>Process: Each records is processed asynchronously and moves
-				through the processors.</li>
-			<li>Complete: Reports summary of records processed. This phase
-				can be used to get some insight into the processed records.</li>
-		</ul>
-		A Batch Job can be triggered via
-		<ul class="post-list">
-			<li>A Batch Execute element, to reference the Batch Job from a
-				flow</li>
-			<li>Placing an inbound one way source like File or FTP in the
-				input section of Batch Job</li>
+			<li>Create a file name <strong>product.xsd</strong> and paste
+				the below content in it<pre>
+					<code class="post-code language-markup">
+&lt;?xml version="1.0" encoding="UTF-8"?>
+&lt;schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://www.example.org/product"
+	xmlns:pro="http://www.example.org/product" elementFormDefault="qualified">
+	&lt;complexType name="productType">
+		&lt;sequence>
+			&lt;element name="name">
+				&lt;simpleType>
+					&lt;restriction base="string">
+						&lt;minLength value="5" />
+						&lt;maxLength value="20" />
+					&lt;/restriction>
+				&lt;/simpleType>
+			&lt;/element>
+			&lt;element ref="pro:id">&lt;/element>
+		&lt;/sequence>
+	&lt;/complexType>
+	&lt;element name="id" type="integer" />
+	&lt;element name="product" type="pro:productType" />
+&lt;/schema></code>
+				</pre></li>
+			<li>Similaarly, create <strong>product.wsdl</strong> and paste
+				the below content in it<pre>
+					<code class="post-code language-markup">
+&lt;?xml version="1.0" encoding="UTF-8" standalone="no"?>
+&lt;wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.example.org/product/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="product"
+	targetNamespace="http://www.example.org/product/" xmlns:pro="http://www.example.org/product">
+	&lt;wsdl:types>
+		&lt;xsd:schema xmlns="http://www.w3.org/2001/XMLSchema">
+			&lt;import schemaLocation="product.xsd" namespace="http://www.example.org/product" />
+			
+			&lt;xsd:element name="GetProductRequest">
+				&lt;xsd:complexType>
+					&lt;xsd:sequence>
+						&lt;xsd:element name="id" type="xsd:integer" />
+					&lt;/xsd:sequence>
+				&lt;/xsd:complexType>
+			&lt;/xsd:element>
+			&lt;xsd:element name="GetProductResponse">
+				&lt;xsd:complexType>
+					&lt;xsd:sequence>
+						&lt;xsd:element name="product" type="pro:productType" />
+					&lt;/xsd:sequence>
+				&lt;/xsd:complexType>
+			&lt;/xsd:element>
+		&lt;/xsd:schema>
+	&lt;/wsdl:types>
+
+	&lt;wsdl:message name="GetProductInput">
+		&lt;wsdl:part element="GetProductRequest" name="parameters" />
+	&lt;/wsdl:message>
+	&lt;wsdl:message name="GetProductOutput">
+		&lt;wsdl:part element="GetProductResponse" name="parameters" />
+	&lt;/wsdl:message>
+
+	&lt;wsdl:portType name="ProductPortType">
+		&lt;wsdl:operation name="GetProduct">
+			&lt;wsdl:input message="tns:GetProductInput" />
+			&lt;wsdl:output message="tns:GetProductOutput" />
+		&lt;/wsdl:operation>
+	&lt;/wsdl:portType>
+
+	&lt;wsdl:binding name="ProductSoapBinding" type="tns:ProductPortType">
+		&lt;soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		&lt;wsdl:operation name="GetProduct">
+			&lt;soap:operation soapAction="http://www.example.org/product/GetProduct" />
+			&lt;wsdl:input>
+				&lt;soap:body use="literal" />
+			&lt;/wsdl:input>
+			&lt;wsdl:output>
+				&lt;soap:body use="literal" />
+			&lt;/wsdl:output>
+		&lt;/wsdl:operation>
+	&lt;/wsdl:binding>
+
+	&lt;wsdl:service name="product">
+		&lt;wsdl:port binding="tns:ProductSoapBinding" name="ProductSoapBinding">
+			&lt;soap:address location="http://localhost:8082/" />
+		&lt;/wsdl:port>
+	&lt;/wsdl:service>
+&lt;/wsdl:definitions>
+</code>
+				</pre>
+				<p class="alert alert-info"></p></li>
+			<li>Open SoapUI</li>
+			<li>Create a new SOAP Project. <strong>File > New SOAP
+					Project</strong></li>
+			<li>Give a Project name and the WSDL path in <mark>Initial
+					WSDL</mark>. Keep the <mark>
+					xsd and wsdl
+					</amrk>
+					in same directory. </li>
+			<li>In the project created, right click on <mark>GetProduct</mark>
+				and select <mark>Add to MockService</mark><img
+				src="images/wsc-1.JPG" class="post-img img-responsive"></li>
+			<li>Open <mark>MockServiceEditor</mark> by double clicking on
+				the Mock Service name<img src="images/wsc-2.JPG"
+				class="post-img img-responsive"></li>
+			<li>Start the mock service. If you get an error saying address
+				already in use, click on the settings gear beside the start button
+				and change port.
+				<p class="alert alert-info">
+					If you change port in mock service, you will need to change the
+					address in WSDL also.<br>Change
+					<code>&lt;soap:address location="http://localhost:8082/" /></code>
+				</p>
+			</li>
+			<li>Done, the web service is started successfully</li>
+			<li>You can check the request structure by clicking on <mark>Request1</mark></li>
 		</ul>
 	</div>
 </section>
 <section>
-	<h3>Creating a Batch Job</h3>
 	<div>
+		<h3>Consuming the Web Service</h3>
 		<ul class="post-list">
-			<li>Drag a Batch scope</li>
-			<li>Drag a File Connector and Transform Message to the input
-				section</li>
-			<li>Configure the File Connector to read the CSV file</li>
-			<li>IN transform Message, write the below code<pre>
-					<code class="language markup post-code"></code>
+			<li>Add the XSD and WSDL files to the <mark>src/main/resources</mark>
+				of the project.
+			</li>
+			<li>Create a new flow, place HTTP as inbound endpoint, configure
+				it.</li>
+			<li>Drop a Transform Message component<pre>
+					<code class="post-code language-javascript">
+%dw 1.0
+%output application/xml
+---
+GetProductRequest : {
+	id: 1
+}</code>
 				</pre></li>
+			<li>Drag a <mark>Web Service Consumer</mark></li>
+			<li>Open the properties tab, click on the <strong>+</strong> to
+				add new configuration<img src="images/wsc-3.JPG"
+				class="post-img img-responsive">Service, Port and Address are
+				auto loaded on giving the location of WSDL file
+			</li>
+			<li>Back to the properties tab, select the Operation, here it is
+				<mark>GetProduct</mark>
+			</li>
+			<li>Set a logger at last and print the payload.You should
+				receive the below XML<pre>
+					<code class="post-code language-markup">
+&lt;soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:prod="http://www.example.org/product">
+   &lt;soapenv:Header/>
+   &lt;soapenv:Body>
+      &lt;GetProductResponse>
+         &lt;product>
+            &lt;prod:name>?&lt;/prod:name>
+            &lt;prod:id>?&lt;/prod:id>
+         &lt;/product>
+      &lt;/GetProductResponse>
+   &lt;/soapenv:Body>
+&lt;/soapenv:Envelope></code>
+				</pre>
+			</li>
 		</ul>
 	</div>
 </section>
