@@ -20,6 +20,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.muletut.entity.Tutorial</value>
+				<value>com.muletut.entity.Reference</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

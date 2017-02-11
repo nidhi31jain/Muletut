@@ -30,31 +30,21 @@ public class MuletutController {
 	 */
 	@RequestMapping("/index")
 	public String getMenu(ModelMap model, HttpServletRequest request) {
-		ArrayList<String> menuItems;
-		try {
-			SearchForm searchForm = new SearchForm();
-			if (muletutService.addMenuItems()) {
-				menuItems = muletutService.getMenu();
-				model.addAttribute("search", searchForm);
-				model.addAttribute("menuItems", menuItems);
-				return "index";
-			} else {
-				return "index";
-			}
-		} catch (MuletutException e) {
-			e.printStackTrace();
-			return "index";
-		}
+		return getIndexMenu(model, request);
 
 	}
 
 	@RequestMapping("/index.html")
-	public String getMenuHTML(ModelMap model, HttpServletRequest request) {
+	public String getIndex(ModelMap model, HttpServletRequest request) {
+		return getIndexMenu(model, request);
+	}
+
+	public String getIndexMenu(ModelMap model, HttpServletRequest request) {
 		ArrayList<String> menuItems;
 		try {
 			SearchForm searchForm = new SearchForm();
 			if (muletutService.addMenuItems()) {
-				menuItems = muletutService.getMenu();
+				menuItems = muletutService.getIndexMenu();
 				model.addAttribute("search", searchForm);
 				model.addAttribute("menuItems", menuItems);
 				return "index";
@@ -88,14 +78,33 @@ public class MuletutController {
 
 	}
 
+	/**
+	 * Method to fetch reference page and reference menu items
+	 * 
+	 * @return
+	 */
 	@RequestMapping("/references.html")
-	public String getRefer() {
-
-		return "references";
+	public String getRefer(ModelMap model, HttpServletRequest request) {
+		ArrayList<String> menuItems;
+		try {
+			SearchForm searchForm = new SearchForm();
+			if (muletutService.addReferenceMenuItems()) {
+				menuItems = muletutService.getReferenceMenu();
+				model.addAttribute("search", searchForm);
+				model.addAttribute("menuItems", menuItems);
+				return "references";
+			} else {
+				return "references";
+			}
+		} catch (MuletutException e) {
+			e.printStackTrace();
+			return "references";
+		}
 	}
 
 	/**
 	 * Method to fetch cloudhub page and cloud menu items
+	 * 
 	 * @return
 	 */
 	@RequestMapping("/cloudhub.html")
@@ -104,7 +113,7 @@ public class MuletutController {
 		try {
 			SearchForm searchForm = new SearchForm();
 			if (muletutService.addMenuItems()) {
-				menuItems = muletutService.getMenu();
+				menuItems = muletutService.getIndexMenu();
 				model.addAttribute("search", searchForm);
 				model.addAttribute("menuItems", menuItems);
 				return "cloudhub";
@@ -116,6 +125,7 @@ public class MuletutController {
 			return "cloudhub";
 		}
 	}
+
 	/**
 	 * Method to search
 	 * 
@@ -124,7 +134,6 @@ public class MuletutController {
 	@RequestMapping(method = RequestMethod.POST, value = "/search")
 	public void search(@ModelAttribute("search") SearchForm searchForm) {
 		String searchString = searchForm.getSearchString();
-		System.out.println(searchString);
 		muletutService.search(searchString);
 
 	}

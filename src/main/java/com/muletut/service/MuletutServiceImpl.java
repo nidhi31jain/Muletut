@@ -27,19 +27,18 @@ public class MuletutServiceImpl implements MuletutService {
 	public boolean addMenuItems() throws MuletutException {
 		String[] menuItemsNames = new String[] { "overview", "environment setup",
 				"building your first mule application", "flows", "HTTP", "file", "database", "variable", "java",
-				"entry point resolver", "invoke", "dataweave - getting started", "dataweave - operators", "dataweave - selectors", "filters",
-				"catch exception strategy", "reference exception strategy", "choice exception strategy", "object store",
-				"batch processing", "java virtual machine(VM)", "JMS", "for each", "choice", "poll", "scatter gather",
-				"collection splitter", "collection aggregator", "composite source", "property", "salesforce", "web service consumer", "async", "SFTP" };
+				"entry point resolver", "invoke", "dataweave - getting started", "dataweave - operators",
+				"dataweave - selectors", "filters", "catch exception strategy", "reference exception strategy",
+				"choice exception strategy", "object store", "batch processing", "java virtual machine(VM)", "JMS",
+				"for each", "choice", "poll", "scatter gather", "collection splitter", "collection aggregator",
+				"composite source", "property", "salesforce", "web service consumer", "async", "SFTP" };
 		return daoService.addMenuItems(menuItemsNames);
-
 	}
 
-	/************* Get All Menu Items ***************/
-	public ArrayList<String> getMenu() throws MuletutException {
-		ArrayList<String> menuItems = daoService.getMenu();
+	/************* Get Index Menu Items ***************/
+	public ArrayList<String> getIndexMenu() throws MuletutException {
+		ArrayList<String> menuItems = daoService.getIndexMenu();
 		return menuItems;
-
 	}
 
 	/******************** Read file *****************/
@@ -65,7 +64,6 @@ public class MuletutServiceImpl implements MuletutService {
 					flag = false;
 
 			}
-			System.out.println(contentBuilder);
 			br.close();
 		} catch (IOException e) {
 			throw new MuletutException("Can't read file");
@@ -92,10 +90,26 @@ public class MuletutServiceImpl implements MuletutService {
 		return content;
 	}
 
+	/************* Add Reference Menu Items ***************/
+	public boolean addReferenceMenuItems() throws MuletutException {
+		String[] referenceMenuItemsNames = new String[] { "flows", "HTTP", "file", "database", "variable", "java",
+				"entry point resolver", "invoke", "filters", "catch exception strategy", "reference exception strategy",
+				"choice exception strategy", "object store", "batch processing", "java virtual machine(VM)", "JMS",
+				"for each", "choice", "scatter gather", "collection splitter", "collection aggregator",
+				"composite source", "property", "salesforce", "web service consumer", "async", "SFTP" };
+		return daoService.addReferenceMenuItems(referenceMenuItemsNames);
+	}
+
+	/************* Get Reference Menu Items ***************/
+	public ArrayList<String> getReferenceMenu() throws MuletutException {
+		ArrayList<String> referenceMenuItems = daoService.getReferenceMenu();
+		return referenceMenuItems;
+	}
+
 	public void search(String searchString) {
 		String path = "/WEB-INF/tuts/installtion.html";
 		File folder = new File(path);
 		System.out.println(folder.listFiles().toString());
-
 	}
+
 }
