@@ -23,11 +23,11 @@ public class MuletutServiceImpl implements MuletutService {
 	public boolean addMenuItems() throws MuletutException {
 		String[] menuItemsNames = new String[] { "overview", "environment setup",
 				"building your first mule application", "flows", "HTTP", "file", "database", "variable", "java",
-				"entry point resolver", "invoke", "dataweave - getting started", "dataweave - operators",
-				"dataweave - selectors", "filters", "catch exception strategy", "reference exception strategy",
+				"entry point resolver", "invoke", "dataweave-getting started", "dataweave-operators",
+				"dataweave-selectors", "filters", "catch exception strategy", "reference exception strategy",
 				"choice exception strategy", "object store", "batch processing", "java virtual machine(VM)", "JMS",
 				"for each", "choice", "poll", "scatter gather", "collection splitter", "collection aggregator",
-				"composite source", "property", "salesforce", "web service consumer", "async", "SFTP" };
+				"composite source", "property", "salesforce", "web service consumer", "SFTP", "async" };
 		return daoService.addMenuItems(menuItemsNames);
 	}
 
@@ -40,7 +40,6 @@ public class MuletutServiceImpl implements MuletutService {
 	/******************** Read file *****************/
 	public String readFile(String title) throws MuletutException {
 		StringBuilder contentBuilder = null;
-		System.out.println(title);
 		BufferedReader br = null;
 		try {
 			contentBuilder = new StringBuilder();

@@ -1,16 +1,14 @@
 $(function() {
-//	alert("Abhay"+$(location).attr("href"))
-//	var file = $(location).attr("href").split("#")[0].split("/")[1];
-//	alert(file)
-//	if (file != "" || file != "index.html") {
-//		$("header nav#navbar-header ul#nav-menu li.active").removeClass(
-//				"active");
-//		$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
-//				.parent().addClass("active");
-//
-//	}
+	/** ************Menu Highlighting************** */
+	var file = $(location).attr("href").split("#")[0].split("/")[4];
+	if (file != "") {
+		$("header nav#navbar-header ul#nav-menu li.active").removeClass(
+				"active");
+		$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
+				.parent().addClass("active");
+	}
+	loadFile("", "", "");
 
-	 loadFile("", "", "");
 	/** ************URL mapping************** */
 	var path = $(location).attr("href").split("#")[1];
 	if (path != null) {
@@ -19,6 +17,7 @@ $(function() {
 		var indexOfItem = $(thisVar).parent().index();
 		loadFile(path, thisVar, indexOfItem);
 	}
+
 	/** ***********Sidebar Link**************** */
 	$("div#main-content aside div ul li a").click(function() {
 		var titleOfItem = $(this).attr("href").substring(1);
@@ -26,6 +25,7 @@ $(function() {
 		var indexOfItem = $(this).parent().index();
 		loadFile(titleOfItem, thisVar, indexOfItem);
 	})
+
 	/** ************Previous Link************ */
 	$("div#post ul.pager li.previous").click(
 			function() {
@@ -40,7 +40,8 @@ $(function() {
 					var titleOfItem = $(thisVar).attr("href").substring("1");
 					loadFile(titleOfItem, thisVar, indexOfPreviousItem);
 				}
-			})
+	})
+
 	/** ************Next Link************ */
 	$("div#post ul.pager li.next")
 			.click(
@@ -96,7 +97,8 @@ $(function() {
 				});
 				$(thisVar).parent().addClass("active");
 				$("div#post div#post-area h2.title").attr("id", indexOfItem)
-				$("div#post div#post-area h2.title").text(titleOfItem);
+				$("div#post div#post-area h2.title").text(
+						titleOfItem.replace(/-/g, " "));
 				$("div#post-content").html(data);
 				setLinks(indexOfItem);
 				if ($("div#post-content .post-code").length != 0) {

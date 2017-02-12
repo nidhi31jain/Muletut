@@ -22,10 +22,10 @@
 				<div>
 					<ul id="mule-menu">
 						<c:forEach items="${menuItems}" var="item" varStatus="status">
-<%-- 							<li ${status.first ? 'class="active first"' : '' }><a --%>
-<%-- 								href="#${item}">Mule - ${fn:replace(item,"-", " ")}</a></li> --%>
 							<li ${status.first ? 'class="active first"' : '' }><a
-								href="#${item}">Mule - ${item}</a></li>
+								href="#${item}">Mule - ${fn:replace(item,"-", " ")}</a></li>
+							<%-- 							<li ${status.first ? 'class="active first"' : '' }><a --%>
+							<%-- 								href="#${item}">Mule - ${item}</a></li> --%>
 						</c:forEach>
 					</ul>
 				</div>

@@ -109,8 +109,8 @@ public class DaoServiceImpl implements DaoService {
 			List<String> items = new ArrayList<String>();
 			Query itemQuery = session.createQuery("SELECT T.name FROM " + table + " T");
 			for(Object item : itemQuery.list()){
-//				items.add(item.toString().replaceAll("\\s", "-"));
-				items.add(item.toString());
+				items.add(item.toString().replaceAll("\\s", "-"));
+//				items.add(item.toString());
 			}
 			transaction.commit();
 			return (ArrayList<String>) items;
