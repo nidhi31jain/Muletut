@@ -15,10 +15,22 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<div id="main-content" class="container-fluid row">
-			<p id = "error">&#9785;</p>
+		<div id="main-content-single">
+			<div class="col-md-1" id="right-sidebar-single"></div>
+			<div class="col-md-10 col-sm-12" id="post">
+				<div id="post-area">
+					<h2 class="title"></h2>
+					<hr class="dotted-line">
+					<div id="post-content"></div>
+				</div>
+				<hr>
+				<ul class="pager">
+					<li class="previous"><a href="#">Previous</a></li>
+					<li class="next"><a href="#">Next</a></li>
+				</ul>
+			</div>
+			<div class="col-md-1" id="left-sidebar-single"></div>
 		</div>
-
 		<%@ include file="footer.jsp"%>
 	</div>
 </body>

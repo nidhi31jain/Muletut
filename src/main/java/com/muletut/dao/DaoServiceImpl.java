@@ -106,9 +106,12 @@ public class DaoServiceImpl implements DaoService {
 		try {
 			session = sessionFactory.openSession();
 			transaction = session.beginTransaction();
+			List<String> items = new ArrayList<String>();
 			Query itemQuery = session.createQuery("SELECT T.name FROM " + table + " T");
-			@SuppressWarnings("unchecked")
-			List<String> items = itemQuery.list();
+			for(Object item : itemQuery.list()){
+//				items.add(item.toString().replaceAll("\\s", "-"));
+				items.add(item.toString());
+			}
 			transaction.commit();
 			return (ArrayList<String>) items;
 		} catch (Exception e) {

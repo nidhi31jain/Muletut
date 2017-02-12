@@ -7,7 +7,6 @@
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -16,14 +15,11 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<%-- 		<c:import url="header.jsp"></c:import>	 --%>
 		<div id="main-content" class="container-fluid row">
 			<aside class="col-sm-3 container sidebar">
 				<div>
 					<ul id="mule-menu">
 						<c:forEach items="${menuItems}" var="item" varStatus="status">
-<%-- 							<li ${status.first ? 'class="active first"' : '' }><a --%>
-<%-- 								href="#${item}">Mule - ${fn:replace(item,"-", " ")}</a></li> --%>
 							<li ${status.first ? 'class="active first"' : '' }><a
 								href="#${item}">Mule - ${item}</a></li>
 						</c:forEach>

@@ -4,7 +4,6 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.dom4j.io.SAXEventRecorder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,7 +22,7 @@ public class MuletutController {
 	MuletutService muletutService;
 
 	/**
-	 * Method to get all menu items
+	 * Method to get index menu items
 	 * 
 	 * @param model
 	 * @return String
@@ -39,23 +38,22 @@ public class MuletutController {
 		return getIndexMenu(model, request);
 	}
 
-	public String getIndexMenu(ModelMap model, HttpServletRequest request) {
+	private String getIndexMenu(ModelMap model, HttpServletRequest request) {
 		ArrayList<String> menuItems;
+		SearchForm searchForm = new SearchForm();
+		model.addAttribute("search", searchForm);
 		try {
-			SearchForm searchForm = new SearchForm();
 			if (muletutService.addMenuItems()) {
 				menuItems = muletutService.getIndexMenu();
-				model.addAttribute("search", searchForm);
 				model.addAttribute("menuItems", menuItems);
 				return "index";
 			} else {
-				return "index";
+				return "redirect: error.html";
 			}
 		} catch (MuletutException e) {
 			e.printStackTrace();
-			return "index";
+			return "redirect: error.html";
 		}
-
 	}
 
 	/**
@@ -94,11 +92,11 @@ public class MuletutController {
 				model.addAttribute("menuItems", menuItems);
 				return "references";
 			} else {
-				return "references";
+				return "redirect:error.html";
 			}
 		} catch (MuletutException e) {
 			e.printStackTrace();
-			return "references";
+			return "redirect:error.html";
 		}
 	}
 
@@ -118,11 +116,30 @@ public class MuletutController {
 				model.addAttribute("menuItems", menuItems);
 				return "cloudhub";
 			} else {
-				return "cloudhub";
+				return "redirect: error.html";
 			}
 		} catch (MuletutException e) {
 			e.printStackTrace();
-			return "cloudhub";
+			return "redirect: error.html";
+		}
+	}
+
+	@RequestMapping("/blog.html")
+	public String getBlog(ModelMap model, HttpServletRequest request) {
+		ArrayList<String> menuItems;
+		try {
+			SearchForm searchForm = new SearchForm();
+			if (muletutService.addMenuItems()) {
+				menuItems = muletutService.getIndexMenu();
+				model.addAttribute("search", searchForm);
+				model.addAttribute("menuItems", menuItems);
+				return "single";
+			} else {
+				return "redirect: error.html";
+			}
+		} catch (MuletutException e) {
+			e.printStackTrace();
+			return "redirect: error.html";
 		}
 	}
 
@@ -137,4 +154,18 @@ public class MuletutController {
 		muletutService.search(searchString);
 
 	}
+
+	/**
+	 * Method to redirect to error page
+	 * 
+	 * @param model
+	 * @return
+	 */
+	@RequestMapping("/error.html")
+	private String getError(ModelMap model) {
+		SearchForm searchForm = new SearchForm();
+		model.addAttribute("search", searchForm);
+		return "error";
+	}
+
 }

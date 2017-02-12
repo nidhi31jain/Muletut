@@ -5,17 +5,13 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
-
-import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.muletut.dao.DaoService;
-import com.muletut.entity.Tutorial;
 import com.muletut.exceptions.MuletutException;
 
 @Service("muletutService")
@@ -93,7 +89,7 @@ public class MuletutServiceImpl implements MuletutService {
 	/************* Add Reference Menu Items ***************/
 	public boolean addReferenceMenuItems() throws MuletutException {
 		String[] referenceMenuItemsNames = new String[] { "flows", "HTTP", "file", "database", "variable", "java",
-				"entry point resolver", "invoke", "filters", "catch exception strategy", "reference exception strategy",
+				"invoke", "filters", "catch exception strategy", "reference exception strategy",
 				"choice exception strategy", "object store", "batch processing", "java virtual machine(VM)", "JMS",
 				"for each", "choice", "scatter gather", "collection splitter", "collection aggregator",
 				"composite source", "property", "salesforce", "web service consumer", "async", "SFTP" };

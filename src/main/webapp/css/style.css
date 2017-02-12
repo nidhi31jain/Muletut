@@ -136,38 +136,200 @@ div#main-content div#post div#post-area {
 /***************Loader************/
 div#main-content div#post div#post-area div.loader {
 	display: none !important;
-	position:fixed;
-/* 	background: rgba(255,255,255,.7); */
-	background:red;
+	position: fixed;
+	/* 	background: rgba(255,255,255,.7); */
+	background: red;
 }
 
 div#main-content div#post div#post-area div.loader div {
-	height:150px;
-	width:150px;
+	height: 150px;
+	width: 150px;
 	margin: 25% auto;
 	animation: loader 4s ease infinite;
 }
-div#main-content div#post div#post-area div.loader div img{
-	width:100%;
-	height:100%;
+
+div#main-content div#post div#post-area div.loader div img {
+	width: 100%;
+	height: 100%;
 }
 
-@-webkit-keyframes loader{
-	0%{
+@
+-webkit-keyframes loader { 0%{
 	transform: rotate(0deg) scale(.5);
-	}
-	25%{
-	transform: rotate(90deg) scale(1);
-	}
-	50%{
-	transform: rotate(180deg) scale(.5);
-	}
-	75%{
-	transform: rotate(270deg) scale(1);
-	}
-	100%{
-	transform: rotate(360deg) scale(.5);
-	}
+}
+
+25%{
+transform
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+rotate
+
+
+
+
+
+
+(90
+deg
+
+
+
+
+)
+scale
+
+
+
+
+
+
+(1);
+}
+50%{
+transform
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+rotate
+
+
+
+
+
+
+(180
+deg
+
+
+
+
+)
+scale
+
+
+
+
+
+
+(
+.5
+
+
+
+
+
+
+);
+}
+75%{
+transform
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+rotate
+
+
+
+
+
+
+(270
+deg
+
+
+
+
+)
+scale
+
+
+
+
+
+
+(1);
+}
+100%{
+transform
+
+
+
+
+
+
+:
+
+
+
+ 
+
+
+
+rotate
+
+
+
+
+
+
+(360
+deg
+
+
+
+
+)
+scale
+
+
+
+
+
+
+(
+.5
+
+
+
+
+
+
+);
+}
 }
 /******************Article******************/
 div#post div#post-area h2.title {
@@ -210,6 +372,26 @@ div#main-content div#post div#post-area div#post-content pre {
 	margin: 1.7em 0 1.7em 0.3em;
 	padding: 0.1em 0.5em 0.3em 0.7em;
 }
+
+/******************************
+********error page************
+*******************************/
+div#main-content-single {
+	margin-top:5px;
+	background: #0077b5;
+	height: auto;
+}
+
+div#right-sidebar-single, div#left-sidebar-single {
+	background: #0077b5;
+	height: 100%;
+}
+
+div#post {
+	background:#fff;
+	border-radius: 3px;
+}
+
 /*****************Scroll*****************/
 a#scroll-up {
 	bottom: 20px;
@@ -229,6 +411,15 @@ a#scroll-up:hover {
 	opacity: 1;
 	filter: alpha(opacity = 100); /* For IE8 and earlier */
 }
+/******************************
+********error page************
+*******************************/
+div#main div#main-content p#error {
+	height: 400px !important;
+	width: 400px !important;
+	background: red !important;
+}
+
 /******************************
 ********change window************
 *******************************/

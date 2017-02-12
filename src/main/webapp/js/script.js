@@ -1,5 +1,16 @@
 $(function() {
-	loadFile("", "", "");
+//	alert("Abhay"+$(location).attr("href"))
+//	var file = $(location).attr("href").split("#")[0].split("/")[1];
+//	alert(file)
+//	if (file != "" || file != "index.html") {
+//		$("header nav#navbar-header ul#nav-menu li.active").removeClass(
+//				"active");
+//		$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
+//				.parent().addClass("active");
+//
+//	}
+
+	 loadFile("", "", "");
 	/** ************URL mapping************** */
 	var path = $(location).attr("href").split("#")[1];
 	if (path != null) {
@@ -68,11 +79,14 @@ $(function() {
 				var headerHeight = $("div#main header").height();
 				var articleAreaWidth = $("div#main-content div#post").width();
 				var loaderHeight = winHeight - headerHeight
-				$(".loader").css({'height': loaderHeight , 'width': articleAreaWidth});
-//				$(".loader").show();
+				$(".loader").css({
+					'height' : loaderHeight,
+					'width' : articleAreaWidth
+				});
+				// $(".loader").show();
 			},
 			success : function(data) {
-//				$(".loader").hide();
+				// $(".loader").hide();
 				$("div#main-content aside div ul li").removeClass("active");
 				$("div#main-content aside div ul li a").css({
 					"color" : "#000"
@@ -88,7 +102,7 @@ $(function() {
 				if ($("div#post-content .post-code").length != 0) {
 					$("div#post-content .post-code").each(function(index) {
 						Prism.highlightElement($(".post-code")[index]);
-				})
+					})
 				}
 			},
 			error : function() {
