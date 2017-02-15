@@ -15,17 +15,21 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<div id="main-content-blog">
-			<div class="col-md-10 col-sm-12 col-md-offset-1" id="posts-container">
-				<div id="post-area">
-					<div id="blog-posts">
-						<div id="posts" class="col-xs-12 col-sm-6">asd</div>
-						<div id="posts" class="col-xs-12 col-sm-6">asd</div>
-						<div id="posts" class="col-xs-12 col-sm-6">asd</div>
-						<div id="posts" class="col-xs-12 col-sm-6">asd</div>
+		<div id="main-content-about">
+			<div class="col-sm-1" id="right-sidebar-single"></div>
+			<div class="col-sm-10" id="post">
+				<div id="post-area" class="col-sm-12">
+					<div id="post-content" class="col-sm-12">
+						<img src="images/bfma-1.JPG"
+							class="col-xs-6 col-sm-4 col-xs-offset-3 col-sm-offset-0 img-responsive img-circle img-thumbnail"
+							id="about-img">
+						<div id="about-container"
+							class="col-xs-12 col-sm-6 col-sm-offset-1">sad</div>
+						<div class="col-sm-1"></div>
 					</div>
 				</div>
 			</div>
+			<div class="col-sm-1" id="left-sidebar-single"></div>
 		</div>
 		<%@ include file="footer.jsp"%>
 	</div>

@@ -124,6 +124,12 @@ public class MuletutController {
 		}
 	}
 
+	/**
+	 * Method to fetch blog home page
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("/blog.html")
 	public String getBlog(ModelMap model, HttpServletRequest request) {
 		ArrayList<String> menuItems;
@@ -133,7 +139,32 @@ public class MuletutController {
 				menuItems = muletutService.getIndexMenu();
 				model.addAttribute("search", searchForm);
 				model.addAttribute("menuItems", menuItems);
-				return "single";
+				return "blog";
+			} else {
+				return "redirect: error.html";
+			}
+		} catch (MuletutException e) {
+			e.printStackTrace();
+			return "redirect: error.html";
+		}
+	}
+	
+	/**
+	 * Method to fetch about page
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/about.html")
+	public String getAbout(ModelMap model, HttpServletRequest request) {
+		ArrayList<String> menuItems;
+		try {
+			SearchForm searchForm = new SearchForm();
+			if (muletutService.addMenuItems()) {
+				menuItems = muletutService.getIndexMenu();
+				model.addAttribute("search", searchForm);
+				model.addAttribute("menuItems", menuItems);
+				return "about";
 			} else {
 				return "redirect: error.html";
 			}
@@ -156,7 +187,7 @@ public class MuletutController {
 	}
 
 	/**
-	 * Method to redirect to error page
+	 * Method to fetch error page
 	 * 
 	 * @param model
 	 * @return

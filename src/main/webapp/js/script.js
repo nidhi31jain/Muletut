@@ -1,65 +1,90 @@
 $(function() {
-	/** ************Menu Highlighting************** */
-	var file = $(location).attr("href").split("#")[0].split("/")[4];
-	if (file != "") {
-		$("header nav#navbar-header ul#nav-menu li.active").removeClass(
-				"active");
-		$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
-				.parent().addClass("active");
-	}
-	loadFile("", "", "");
+	mapURL();
+	/** ************Menu Highlighting And Background************** */
+	HTMLSettings();
+//	$('#blog-posts').masonry({
+//		itemSelector : '#posts',
+//		columnWidth : '.col-xs-4'
+//	});
 
-	/** ************URL mapping************** */
-	var path = $(location).attr("href").split("#")[1];
-	if (path != null) {
-		var thisVar = $("div#main-content aside div ul li a[href='#" + path
-				+ "']");
-		var indexOfItem = $(thisVar).parent().index();
-		loadFile(path, thisVar, indexOfItem);
-	}
+	loadFile("", "", "");
 
 	/** ***********Sidebar Link**************** */
 	$("div#main-content aside div ul li a").click(function() {
-		var titleOfItem = $(this).attr("href").substring(1);
-		var thisVar = $(this);
-		var indexOfItem = $(this).parent().index();
+		setSidebarLinks(this);
+	})
+
+	/** ************Change Previous Link************ */
+	$("div#post ul.pager li.previous").click(function() {
+		changePreviousLink(this);
+	})
+
+	/** ************Change Next Link************ */
+	$("div#post ul.pager li.next").click(function() {
+		changeNextLink(this);
+	})
+	/** ************URL mapping************** */
+	function mapURL() {
+		var path = $(location).attr("href").split("#")[1];
+		if (path != null) {
+			var thisVar = $("div#main-content aside div ul li a[href='#" + path
+					+ "']");
+			var indexOfItem = $(thisVar).parent().index();
+			loadFile(path, thisVar, indexOfItem);
+		}
+	}
+
+	/** ************Function for HTML Settings************** */
+	function HTMLSettings() {
+		var file = $(location).attr("href").split("#")[0].split("/")[4];
+		if (file != "") {
+			$("header nav#navbar-header ul#nav-menu li.active").removeClass(
+					"active");
+			$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
+					.parent().addClass("active");
+			if (file == "about.html" || file == "error.html") {
+				$("html").css('overflow', 'hidden')
+			}
+		}
+	}
+
+	/** ***********Function to Set Sidebar Link**************** */
+	function setSidebarLinks(thisVar) {
+		var titleOfItem = $(thisVar).attr("href").substring(1);
+		var indexOfItem = $(thisVar).parent().index();
 		loadFile(titleOfItem, thisVar, indexOfItem);
-	})
+	}
 
-	/** ************Previous Link************ */
-	$("div#post ul.pager li.previous").click(
-			function() {
-				var idOfHeading = $(this).parent().parent().find("h2.title")
-						.attr("id");
-				if (idOfHeading == 0) {
-					alert("Sorry")
-				} else {
-					var indexOfPreviousItem = idOfHeading - 1;
-					var thisVar = $("div#main-content aside div ul li").eq(
-							indexOfPreviousItem).find("a");
-					var titleOfItem = $(thisVar).attr("href").substring("1");
-					loadFile(titleOfItem, thisVar, indexOfPreviousItem);
-				}
-	})
+	/** ************Function to change Previous Link************ */
+	function changePreviousLink(thisVar) {
+		var idOfHeading = $(thisVar).parent().parent().find("h2.title").attr(
+				"id");
+		if (idOfHeading == 0) {
+			alert("Sorry")
+		} else {
+			var indexOfPreviousItem = idOfHeading - 1;
+			var thisVar = $("div#main-content aside div ul li").eq(
+					indexOfPreviousItem).find("a");
+			var titleOfItem = $(thisVar).attr("href").substring("1");
+			loadFile(titleOfItem, thisVar, indexOfPreviousItem);
+		}
+	}
 
-	/** ************Next Link************ */
-	$("div#post ul.pager li.next")
-			.click(
-					function() {
-						var idOfHeading = $(this).parent().parent().find(
-								"h2.title").attr("id");
-						var totalCount = $("div#main-content aside div ul li").length - 1;
-						if (idOfHeading == totalCount) {
-							alert("Sorry")
-						} else {
-							var indexOfNextItem = parseInt(idOfHeading) + 1;
-							var thisVar = $("div#main-content aside div ul li")
-									.eq(indexOfNextItem).find("a");
-							var titleOfItem = $(thisVar).attr("href")
-									.substring("1");
-							loadFile(titleOfItem, thisVar, indexOfNextItem);
-						}
-					})
+	/** ************Function to Change Next Link************ */
+	function changeNextLink(thisVar) {
+		var idOfHeading = $(thisVar).parent().parent().find("h2.title").attr(
+				"id");
+		var totalCount = $("div#main-content aside div ul li").length - 1;
+		if (idOfHeading == totalCount) {
+			alert("Sorry")
+		} else {
+			var indexOfNextItem = parseInt(idOfHeading) + 1;
+			var thisVar = $("div#main-content aside div ul li").eq(
+					indexOfNextItem).find("a");
+			var titleOfItem = $(thisVar).attr("href").substring("1");
+			loadFile(titleOfItem, thisVar, indexOfNextItem);
+		}
+	}
 
 	/** ***********Load File************ */
 	function loadFile(titleOfItem, thisVar, indexOfItem) {
