@@ -4,13 +4,16 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.muletut.dto.SearchForm;
 import com.muletut.exceptions.MuletutException;
@@ -126,6 +129,7 @@ public class MuletutController {
 
 	/**
 	 * Method to fetch blog home page
+	 * 
 	 * @param model
 	 * @param request
 	 * @return
@@ -139,7 +143,7 @@ public class MuletutController {
 				menuItems = muletutService.getIndexMenu();
 				model.addAttribute("search", searchForm);
 				model.addAttribute("menuItems", menuItems);
-				return "blog";
+				return "single";
 			} else {
 				return "redirect: error.html";
 			}
@@ -148,9 +152,10 @@ public class MuletutController {
 			return "redirect: error.html";
 		}
 	}
-	
+
 	/**
 	 * Method to fetch about page
+	 * 
 	 * @param model
 	 * @param request
 	 * @return

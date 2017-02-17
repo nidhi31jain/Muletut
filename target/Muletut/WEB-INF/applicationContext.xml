@@ -20,6 +20,7 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.muletut.entity.Tutorial</value>
+				<value>com.muletut.entity.Reference</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -28,6 +29,7 @@
 				<prop key="hibernate.show_sql">true</prop>
 				<prop key="hibernate.format_sql">true</prop>
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
+				<prop key="hibernate.jdbc.batch_size">50</prop>
 			</props>
 		</property>
 	</bean>

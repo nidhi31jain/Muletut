@@ -7,4 +7,5 @@
 	<script src="prism/prism.js"></script>
 	<script
 		src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://apis.google.com/js/plusone.js"></script>
 </footer>

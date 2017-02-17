@@ -19,10 +19,10 @@
 			<div class="col-md-10 col-sm-12 col-md-offset-1" id="posts-container">
 				<div id="post-area">
 					<div id="blog-posts">
-						<div id="posts" class="col-xs-12 col-sm-6">asd</div>
-						<div id="posts" class="col-xs-12 col-sm-6">asd</div>
-						<div id="posts" class="col-xs-12 col-sm-6">asd</div>
-						<div id="posts" class="col-xs-12 col-sm-6">asd</div>
+						<div id="posts" class="col-xs-12 col-sm-4">10+ Angular 2 and WordPress Integrations Examples</div>
+						<div id="posts" class="col-xs-12 col-sm-4">10+ Angular 2 and WordPress Integrations Examples</div>
+						<div id="posts" class="col-xs-12 col-sm-4">10+ Angular 2 and WordPress Integrations Examples</div>
+						<div id="posts" class="col-xs-12 col-sm-4">10+ Angular 2 and WordPress Integrations Examples</div>
 					</div>
 				</div>
 			</div>
