@@ -103,11 +103,12 @@ public class MuletutServiceImpl implements MuletutService {
 
 	/************* Add Blog Posts ***************/
 	public boolean addBlogPosts() throws MuletutException {
-		String[] blogPostsNames = new String[] { "flows", "HTTP", "file", "database", "variable", "java", "invoke",
-				"filters", "catch exception strategy", "reference exception strategy", "choice exception strategy",
-				"object store", "batch processing", "java virtual machine(VM)", "JMS", "for each", "choice",
-				"scatter gather", "collection splitter", "collection aggregator", "composite source", "property",
-				"salesforce", "web service consumer", "async", "SFTP" };
+		String[] blogPostsNames = new String[] { "10+ Angular 2 and WordPress Integrations Examples", "flows", "HTTP",
+				"file", "database", "variable", "java", "invoke", "filters", "catch exception strategy",
+				"reference exception strategy", "choice exception strategy", "object store", "batch processing",
+				"java virtual machine(VM)", "JMS", "for each", "choice", "scatter gather", "collection splitter",
+				"collection aggregator", "composite source", "property", "salesforce", "web service consumer", "async",
+				"SFTP" };
 		return daoService.addBlogPosts(blogPostsNames);
 	}
 
