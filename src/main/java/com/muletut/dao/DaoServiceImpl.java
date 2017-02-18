@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.muletut.entity.Post;
 import com.muletut.entity.Reference;
 import com.muletut.entity.Tutorial;
 import com.muletut.exceptions.MuletutException;
@@ -99,6 +100,46 @@ public class DaoServiceImpl implements DaoService {
 		return getMenu(table);
 	}
 
+	/************* Add Blog Posts Names ***************/
+	public boolean addBlogPosts(String[] blogPostsNames) throws MuletutException {
+		Session session = null;
+		Transaction transaction = null;
+		try {
+			session = sessionFactory.openSession();
+			transaction = session.beginTransaction();
+			Query sizeQuery = session.createQuery("SELECT COUNT(*) FROM Post P");
+			Long dataSize = (Long) (sizeQuery.uniqueResult());
+			if (dataSize != blogPostsNames.length) {
+				session.createQuery("DELETE FROM Post").executeUpdate();
+				for (int i = 0; i < blogPostsNames.length; i++) {
+					Post object = new Post();
+					object.setName(blogPostsNames[i]);
+					session.save(object);
+					if (i % 20 == 0) {
+						session.flush();
+						session.clear();
+					}
+				}
+				transaction.commit();
+			}
+			return true;
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			throw new MuletutException("Can't connect with database", e);
+
+		} finally {
+			session.close();
+		}
+	}
+
+	/************* Get Blog Posts ***************/
+	public ArrayList<String> getBlogPosts() throws MuletutException {
+		String table = "Post";
+		return getMenu(table);
+	}
+
 	/************* Get Menu Items ***************/
 	private ArrayList<String> getMenu(String table) throws MuletutException {
 		Session session = null;
@@ -108,9 +149,8 @@ public class DaoServiceImpl implements DaoService {
 			transaction = session.beginTransaction();
 			List<String> items = new ArrayList<String>();
 			Query itemQuery = session.createQuery("SELECT T.name FROM " + table + " T");
-			for(Object item : itemQuery.list()){
+			for (Object item : itemQuery.list()) {
 				items.add(item.toString().replaceAll("\\s", "-"));
-//				items.add(item.toString());
 			}
 			transaction.commit();
 			return (ArrayList<String>) items;

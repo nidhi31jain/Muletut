@@ -16,7 +16,6 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<%-- 		<c:import url="header.jsp"></c:import>	 --%>
 		<div id="main-content" class="container-fluid row">
 			<aside class="col-sm-3 container sidebar">
 				<div>
@@ -36,7 +35,7 @@
 <!-- 						</p> -->
 <!-- 					</div> -->
 <!-- 				</div> -->
-				<div id="post-area">
+				<div id="post-area" class = "col-xs-12">
 					<h2 class="title"></h2>
 					<hr class="dotted-line">
 					<div id="post-content"></div>

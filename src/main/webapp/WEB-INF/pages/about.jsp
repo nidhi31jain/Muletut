@@ -15,7 +15,7 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<div id="main-content-about">
+		<div id="main-content-about" class = "col-xs-12">
 			<div class="col-sm-1" id="right-sidebar-single"></div>
 			<div class="col-sm-10" id="post">
 				<div id="post-area" class="col-sm-12">

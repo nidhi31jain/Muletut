@@ -19,7 +19,7 @@ public class MuletutServiceImpl implements MuletutService {
 	@Autowired
 	DaoService daoService;
 
-	/************* Add Menu Items ***************/
+	/************* Add Index Menu Items ***************/
 	public boolean addMenuItems() throws MuletutException {
 		String[] menuItemsNames = new String[] { "overview", "environment setup",
 				"building your first mule application", "flows", "HTTP", "file", "database", "variable", "java",
@@ -99,6 +99,22 @@ public class MuletutServiceImpl implements MuletutService {
 	public ArrayList<String> getReferenceMenu() throws MuletutException {
 		ArrayList<String> referenceMenuItems = daoService.getReferenceMenu();
 		return referenceMenuItems;
+	}
+
+	/************* Add Blog Posts ***************/
+	public boolean addBlogPosts() throws MuletutException {
+		String[] blogPostsNames = new String[] { "flows", "HTTP", "file", "database", "variable", "java", "invoke",
+				"filters", "catch exception strategy", "reference exception strategy", "choice exception strategy",
+				"object store", "batch processing", "java virtual machine(VM)", "JMS", "for each", "choice",
+				"scatter gather", "collection splitter", "collection aggregator", "composite source", "property",
+				"salesforce", "web service consumer", "async", "SFTP" };
+		return daoService.addBlogPosts(blogPostsNames);
+	}
+
+	/************* Get Blog Posts ***************/
+	public ArrayList<String> getBlogPosts() throws MuletutException {
+		ArrayList<String> blogPosts = daoService.getBlogPosts();
+		return blogPosts;
 	}
 
 	public void search(String searchString) {

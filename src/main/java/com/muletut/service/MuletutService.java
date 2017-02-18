@@ -44,4 +44,18 @@ public interface MuletutService {
 	 */
 	ArrayList<String> getReferenceMenu() throws MuletutException;
 
+	/**
+	 * Method to add blog posts titles
+	 * @return
+	 * @throws MuletutException
+	 */
+	boolean addBlogPosts() throws MuletutException;
+
+	/**
+	 * Method to get Blog posts
+	 * @return
+	 * @throws MuletutException
+	 */
+	ArrayList<String> getBlogPosts() throws MuletutException;
+
 }

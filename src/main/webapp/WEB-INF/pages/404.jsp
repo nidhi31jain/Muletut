@@ -15,7 +15,7 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<div id="main-content-single" class="container-fluid row">
+		<div id="main-content-error" class="container-fluid row col-xs-12">
 			<div id="error" class="col-sm-8 col-xs-12 centered col-md-offset-2">
 				<p id = "code" class = "col-xs-6 col-xs-offset-3">404</p>
 				<p id = "message" class = "col-xs-12">THE PAGE YOU ARE LOOKING FOR DOESN'T EXIST</p>

@@ -15,14 +15,13 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<div id="main-content-blog">
+		<div id="main-content-blog" class = "container-fluid row col-xs-12">
 			<div class="col-md-10 col-sm-12 col-md-offset-1" id="posts-container">
 				<div id="post-area">
 					<div id="blog-posts">
-						<div id="posts" class="col-xs-12 col-sm-4">10+ Angular 2 and WordPress Integrations Examples</div>
-						<div id="posts" class="col-xs-12 col-sm-4">10+ Angular 2 and WordPress Integrations Examples</div>
-						<div id="posts" class="col-xs-12 col-sm-4">10+ Angular 2 and WordPress Integrations Examples</div>
-						<div id="posts" class="col-xs-12 col-sm-4">10+ Angular 2 and WordPress Integrations Examples</div>
+						<c:forEach items="${posts}" var="post" varStatus="status">
+							<a href = "blog/${post}"><div id="posts" class="col-xs-12 col-sm-4">${post}</div></a>
+						</c:forEach>
 					</div>
 				</div>
 			</div>

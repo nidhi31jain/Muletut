@@ -70,6 +70,7 @@ public class MuletutController {
 	public String getTutData(HttpServletRequest request) {
 		String title = request.getParameter("title");
 		String fileData = null;
+		System.out.println(title);
 		try {
 			fileData = muletutService.readFile(title);
 		} catch (MuletutException e) {
@@ -136,14 +137,14 @@ public class MuletutController {
 	 */
 	@RequestMapping("/blog.html")
 	public String getBlog(ModelMap model, HttpServletRequest request) {
-		ArrayList<String> menuItems;
+		ArrayList<String> posts;
 		try {
 			SearchForm searchForm = new SearchForm();
-			if (muletutService.addMenuItems()) {
-				menuItems = muletutService.getIndexMenu();
+			if (muletutService.addBlogPosts()) {
+				posts = muletutService.getBlogPosts();
 				model.addAttribute("search", searchForm);
-				model.addAttribute("menuItems", menuItems);
-				return "single";
+				model.addAttribute("posts", posts);
+				return "blog";
 			} else {
 				return "redirect: error.html";
 			}
@@ -152,6 +153,7 @@ public class MuletutController {
 			return "redirect: error.html";
 		}
 	}
+
 
 	/**
 	 * Method to fetch about page

@@ -5,6 +5,14 @@ import java.util.ArrayList;
 import com.muletut.entity.Tutorial;
 import com.muletut.exceptions.MuletutException;
 
+/**
+ * @author asyad
+ *
+ */
+/**
+ * @author asyad
+ *
+ */
 public interface DaoService {
 
 	/**
@@ -36,5 +44,20 @@ public interface DaoService {
 	 * @throws MuletutException
 	 */
 	ArrayList<String> getReferenceMenu() throws MuletutException;
+
+	/**
+	 * Method to add blog posts
+	 * @param blogPostsNames
+	 * @return
+	 * @throws MuletutException
+	 */
+	boolean addBlogPosts(String[] blogPostsNames) throws MuletutException;
+
+	/**
+	 * Method to get blog posts titles
+	 * @return
+	 * @throws MuletutException
+	 */
+	ArrayList<String> getBlogPosts() throws MuletutException;
 
 }
