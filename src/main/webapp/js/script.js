@@ -4,6 +4,7 @@ $(function() {
 	function mapURL() {
 		var file = $(location).attr("href").split("/")[4].split("#")[0]
 		if(file == "blog.html"){
+			$("html, body").attr('style', 'background: #fff !important')
 			HTMLSettings();			
 		} else if (file == "about.html"){
 			HTMLSettings();			
@@ -169,7 +170,14 @@ $(function() {
 				var colors = [ "#99b433", "#00a300", "#1e7145", "#ff0097",
 						"#9f00a7", "#7e3878", "#00aba9", "#ffc40d", "#e3a21a",
 						"#da532c", "#ee1111", "#b91d47", "#673AB7" ];
-				setColor(colors);
+				var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#0077b5", "#ff66c2"];
+				setColor(newColors);
+				$("div#main-content-blog div#posts-container #posts").hover(function(){
+					var color = $(this).css('background');
+					var rgbValue = color.substring(0, parseInt(color.indexOf(")"))+1);
+				}, function(){
+					
+				})
 				// gapi.comments.render('comments', {
 				// href: window.location,
 				// first_party_property: 'BLOGGER',
@@ -181,7 +189,7 @@ $(function() {
 	}
 
 	function setColor(colors) {
-		$("div#main-content-blog div#posts-container div#posts").each(
+		$("div#main-content-blog div#posts-container #posts").each(
 				function() {
 					var rand = Math.floor(Math.random() * colors.length);
 					$(this).css('background', colors[rand]);

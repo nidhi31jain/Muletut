@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.servlet.HandlerMapping;
 
 import com.muletut.dto.SearchForm;
 import com.muletut.exceptions.MuletutException;
@@ -154,6 +155,14 @@ public class MuletutController {
 		}
 	}
 
+	@RequestMapping("*.htm")
+	public String getPost(ModelMap model, HttpServletRequest request) {
+		String path = (String) request.getAttribute(
+	            HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+		SearchForm searchForm = new SearchForm();
+		model.addAttribute("search", searchForm);
+		return "single";
+	}
 
 	/**
 	 * Method to fetch about page

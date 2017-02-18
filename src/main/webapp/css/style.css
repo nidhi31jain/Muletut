@@ -10,8 +10,7 @@ html, body {
 	font-family: "OpenSans", Helvetica, Arial, sans-serif !important;
 	/* 	line-height: 21px !important; */
 	font-weight: 400;
-	font-size: 16px !important;
-	overflow-x: hidden;
+	font-size: 15px !important;
 	font-weight: 400;
 	background: #0077b5 !important;
 }
@@ -27,8 +26,7 @@ header {
 }
 
 .navbar-default {
-	font-size: 18px;
-	font-family: "DinPro","openSans",Arial,Helvetica,sans-serif;
+	font:17px "DinPro", "openSans", Arial, Helvetica, sans-serif;
 	font-weight: 300;
 	height: 7.5% !important;
 	background-color: #0077b5 !important;
@@ -191,7 +189,6 @@ div#main-content div#post div#post-area div#post-content pre {
 div#main-content-blog, div#main-content-single, div#main-content-about,
 	div#main-content-error {
 	margin-top: 5px;
-	background: #0077b5;
 	height: auto;
 }
 
@@ -207,22 +204,26 @@ div#main-content-blog div#posts-container, div#main-content-single div#post
 }
 
 div#main-content-blog div#posts-container a {
-	display:block;
+	display: block;
 }
 
-div#main-content-blog div#posts-container div#posts {
-	height: 200px;
+div#main-content-blog div#posts-container #posts {
+	display: inline-block;
+	list-style:none;
+	height: 130px;
 	padding: 10px;
 	margin-bottom: 5px;
 	color: #fff;
-	font-size: 28px;
-	border: 5px solid #0077b5;
+	font: 19px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	border: 10px solid #fff;
+	border-bottom:1px solid #fff;
 	text-transform: capitalize;
+/* 	background: #0077b5; */
 }
 
-div#main-content-blog div#posts-container div#posts:hover {
-	border: 2px solid #fff;
-	box-shadow: 1px 1px 2px #fff;
+div#main-content-blog div#posts-container #posts:hover {
+	/* 	box-shadow: 1px 1px 2px #fff; */
+	background:#006399;
 }
 /******************************
 ********single page************
@@ -242,6 +243,7 @@ div#main-content-single div#post div#post-content {
 	font-family: "OpenSans", Helvetica, Arial, sans-serif;
 	color: #58595a;
 	word-spacing: 2px !important;
+	word-break: break-all;
 }
 /******************************
 ********about page************
