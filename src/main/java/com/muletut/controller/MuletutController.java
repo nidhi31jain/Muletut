@@ -71,7 +71,6 @@ public class MuletutController {
 	public String getTutData(HttpServletRequest request) {
 		String title = request.getParameter("title");
 		String fileData = null;
-		System.out.println(title);
 		try {
 			fileData = muletutService.readFile(title);
 		} catch (MuletutException e) {
@@ -155,13 +154,53 @@ public class MuletutController {
 		}
 	}
 
+	/**
+	 * Method to fetch post page
+	 * @param model
+	 * @param request
+	 * @return
+	 */
 	@RequestMapping("*.htm")
 	public String getPost(ModelMap model, HttpServletRequest request) {
 		String path = (String) request.getAttribute(
 	            HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
-		SearchForm searchForm = new SearchForm();
-		model.addAttribute("search", searchForm);
-		return "single";
+		ArrayList<String> posts;
+		System.out.println(path);
+		try {
+			SearchForm searchForm = new SearchForm();
+			if (muletutService.addBlogPosts()) {
+				posts = muletutService.getBlogPosts();
+				model.addAttribute("search", searchForm);
+				model.addAttribute("posts", posts);
+				model.addAttribute("title", path);
+				return "single";
+			} else {
+				return "redirect: error.html";
+			}
+		} catch (MuletutException e) {
+			e.printStackTrace();
+			return "redirect: error.html";
+		}
+	}
+
+	/**
+	 * Method to get post
+	 * 
+	 * @param request
+	 * @return String
+	 */
+	@ResponseBody
+	@RequestMapping("/post")
+	public String getPostData(HttpServletRequest request) {
+		String title = request.getParameter("title");
+		String fileData = null;
+		try {
+			fileData = muletutService.readPost(title);
+		} catch (MuletutException e) {
+			e.printStackTrace();
+		}
+		return fileData;
+
 	}
 
 	/**

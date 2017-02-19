@@ -58,4 +58,12 @@ public interface MuletutService {
 	 */
 	ArrayList<String> getBlogPosts() throws MuletutException;
 
+	/**
+	 * Method to read blog post
+	 * @param title
+	 * @return
+	 * @throws MuletutException
+	 */
+	String readPost(String title) throws MuletutException;
+
 }

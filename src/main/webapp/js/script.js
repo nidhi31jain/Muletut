@@ -3,18 +3,11 @@ $(function() {
 	/** ************URL mapping************** */
 	function mapURL() {
 		var file = $(location).attr("href").split("/")[4].split("#")[0]
-		if(file == "blog.html"){
-			$("html, body").attr('style', 'background: #fff !important')
-			$("#mule-menu-button").hide();
-			HTMLSettings();			
-		} else if (file == "about.html"){
-			$("#mule-menu-button").hide();
-			HTMLSettings();			
-		} else {
+		if (file == "index.html" || file == "" || file == "cloudhub.html") {
 			var path = $(location).attr("href").split("#")[1];
 			if (path != null) {
-				var thisVar = $("div#main-content aside div ul li a[href='#" + path
-						+ "']");
+				var thisVar = $("div#main-content aside div ul li a[href='#"
+						+ path + "']");
 				var indexOfItem = $(thisVar).parent().index();
 				HTMLSettings();
 				loadFile(path, thisVar, indexOfItem);
@@ -22,9 +15,60 @@ $(function() {
 			if (typeof path == "undefined") {
 				HTMLSettings();
 				loadFile("", "", "");
-			}			
-
+			}
+		} else if (file == "blog.html") {
+			$("html, body").attr('style', 'background: #fff !important')
+			$("#mule-menu-button").hide();
+			HTMLSettings();
+		} else if (file == "about.html") {
+			$("#mule-menu-button").hide();
+			HTMLSettings();
+		} else {
+			var colors = [ "#99b433", "#00a300", "#1e7145", "#ff0097",
+					"#9f00a7", "#7e3878", "#00aba9", "#ffc40d", "#e3a21a",
+					"#da532c", "#ee1111", "#b91d47", "#673AB7", "#ff66c2" ];
+			setColor(colors);
+			loadPost();
 		}
+	}
+
+	/** ***********Load Post************ */
+	function loadPost() {
+		var title = $("div#main-content-single div#post-area h2.title").text()
+				.split(".")[0];
+		var color = $("div#main-content-single aside ul #posts").filter(
+				function() {
+					return $(this).text() === title
+				}).css('background');
+		$("div#main-content-single div#post-area div#heading").css(
+				'background',
+				color.substring(0, parseInt(color.indexOf(")")) + 1))
+
+		var request = $.ajax({
+			url : "post.html",
+			type : "GET",
+			data : {
+				title : title.toLowerCase()
+			},
+			cache : false,
+			beforeSend : function() {
+			},
+			success : function(data) {
+				$("div#main-content-single div#post-content").html(data);
+				if ($("div#post-content .post-code").length != 0) {
+					$("div#post-content .post-code").each(function(index) {
+						Prism.highlightElement($(".post-code")[index]);
+					})
+				}
+				gapi.comments.render('comments', {
+					href : window.location,
+					first_party_property : 'BLOGGER',
+					view_type : 'FILTERED_POSTMOD'
+				});
+			},
+			error : function() {
+			}
+		})
 	}
 
 	/** ***********Load File************ */
@@ -169,33 +213,26 @@ $(function() {
 			if (file == "about.html" || file == "error.html") {
 				$("#main").css('overflow', 'hidden')
 			} else if (file == "blog.html") {
-				var colors = [ "#99b433", "#00a300", "#1e7145", "#ff0097",
-						"#9f00a7", "#7e3878", "#00aba9", "#ffc40d", "#e3a21a",
-						"#da532c", "#ee1111", "#b91d47", "#673AB7" ];
-				var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#0077b5", "#ff66c2"];
+				var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#0077b5",
+						"#ff66c2" ];
 				setColor(newColors);
-				$("div#main-content-blog div#posts-container #posts").hover(function(){
-					var color = $(this).css('background');
-					var rgbValue = color.substring(0, parseInt(color.indexOf(")"))+1);
-				}, function(){
-					
-				})
-				// gapi.comments.render('comments', {
-				// href: window.location,
-				// first_party_property: 'BLOGGER',
-				// view_type: 'FILTERED_POSTMOD'
-				// });
+				$("div#main-content-blog div#posts-container #posts").hover(
+						function() {
+							var color = $(this).css('background');
+							var rgbValue = color.substring(0, parseInt(color
+									.indexOf(")")) + 1);
+						}, function() {
 
+						})
 			}
 		}
 	}
 
 	function setColor(colors) {
-		$("div#main-content-blog div#posts-container #posts").each(
-				function() {
-					var rand = Math.floor(Math.random() * colors.length);
-					$(this).css('background', colors[rand]);
-				})
+		$("div#main ul #posts").each(function() {
+			var rand = Math.floor(Math.random() * colors.length);
+			$(this).css('background', colors[rand]);
+		})
 	}
 
 	/** ***********Scroll*************** */

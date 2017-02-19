@@ -37,14 +37,75 @@ public class MuletutServiceImpl implements MuletutService {
 		return menuItems;
 	}
 
-	/******************** Read file *****************/
+	/******************** Read tut *****************/
 	public String readFile(String title) throws MuletutException {
+		String type = "tuts";
+		return reader(type, title);
+	}
+	
+	
+
+	/************* Add Reference Menu Items ***************/
+	public boolean addReferenceMenuItems() throws MuletutException {
+		String[] referenceMenuItemsNames = new String[] { "flows", "HTTP", "file", "database", "variable", "java",
+				"invoke", "filters", "catch exception strategy", "reference exception strategy",
+				"choice exception strategy", "object store", "batch processing", "java virtual machine(VM)", "JMS",
+				"for each", "choice", "scatter gather", "collection splitter", "collection aggregator",
+				"composite source", "property", "salesforce", "web service consumer", "async", "SFTP" };
+		return daoService.addReferenceMenuItems(referenceMenuItemsNames);
+	}
+
+	/************* Get Reference Menu Items ***************/
+	public ArrayList<String> getReferenceMenu() throws MuletutException {
+		ArrayList<String> referenceMenuItems = daoService.getReferenceMenu();
+		return referenceMenuItems;
+	}
+
+	/************* Add Blog Posts ***************/
+	public boolean addBlogPosts() throws MuletutException {
+		String[] blogPostsNames = new String[] { "10+ Angular 2 and WordPress Integrations Examples", "flows", "HTTP",
+				"file", "database", "variable", "java", "invoke", "filters", "catch exception strategy",
+				"reference exception strategy", "choice exception strategy", "object store", "batch processing",
+				"java virtual machine(VM)", "JMS", "for each", "choice", "scatter gather", "collection splitter",
+				"collection aggregator", "composite source", "property", "salesforce", "web service consumer", "async",
+				"SFTP" };
+		return daoService.addBlogPosts(blogPostsNames);
+	}
+
+	/************* Get Blog Posts ***************/
+	public ArrayList<String> getBlogPosts() throws MuletutException {
+		ArrayList<String> blogPosts = daoService.getBlogPosts();
+		return blogPosts;
+	}
+	
+	/******************** Read post *****************/
+	public String readPost(String title) throws MuletutException {
+		String type = "posts";
+		return reader(type, title);
+	}
+
+	public void search(String searchString) {
+		String path = "/WEB-INF/tuts/installtion.html";
+		File folder = new File(path);
+		System.out.println(folder.listFiles().toString());
+	}
+	
+	
+	/**
+	 * Method to read file
+	 * @param type
+	 * @param title
+	 * @return
+	 * @throws MuletutException
+	 */
+	private String reader(String type, String title) throws MuletutException{
+		System.out.println(type);
 		StringBuilder contentBuilder = null;
 		BufferedReader br = null;
 		try {
 			contentBuilder = new StringBuilder();
 			br = new BufferedReader(new InputStreamReader(
-					Thread.currentThread().getContextClassLoader().getResourceAsStream(title + ".html")));
+					Thread.currentThread().getContextClassLoader().getResourceAsStream(type+"/"+title + ".html")));
 			String str;
 			boolean flag = false;
 			while ((str = br.readLine()) != null) {
@@ -83,45 +144,7 @@ public class MuletutServiceImpl implements MuletutService {
 			e.printStackTrace();
 		}
 		return content;
-	}
 
-	/************* Add Reference Menu Items ***************/
-	public boolean addReferenceMenuItems() throws MuletutException {
-		String[] referenceMenuItemsNames = new String[] { "flows", "HTTP", "file", "database", "variable", "java",
-				"invoke", "filters", "catch exception strategy", "reference exception strategy",
-				"choice exception strategy", "object store", "batch processing", "java virtual machine(VM)", "JMS",
-				"for each", "choice", "scatter gather", "collection splitter", "collection aggregator",
-				"composite source", "property", "salesforce", "web service consumer", "async", "SFTP" };
-		return daoService.addReferenceMenuItems(referenceMenuItemsNames);
-	}
-
-	/************* Get Reference Menu Items ***************/
-	public ArrayList<String> getReferenceMenu() throws MuletutException {
-		ArrayList<String> referenceMenuItems = daoService.getReferenceMenu();
-		return referenceMenuItems;
-	}
-
-	/************* Add Blog Posts ***************/
-	public boolean addBlogPosts() throws MuletutException {
-		String[] blogPostsNames = new String[] { "10+ Angular 2 and WordPress Integrations Examples", "flows", "HTTP",
-				"file", "database", "variable", "java", "invoke", "filters", "catch exception strategy",
-				"reference exception strategy", "choice exception strategy", "object store", "batch processing",
-				"java virtual machine(VM)", "JMS", "for each", "choice", "scatter gather", "collection splitter",
-				"collection aggregator", "composite source", "property", "salesforce", "web service consumer", "async",
-				"SFTP" };
-		return daoService.addBlogPosts(blogPostsNames);
-	}
-
-	/************* Get Blog Posts ***************/
-	public ArrayList<String> getBlogPosts() throws MuletutException {
-		ArrayList<String> blogPosts = daoService.getBlogPosts();
-		return blogPosts;
-	}
-
-	public void search(String searchString) {
-		String path = "/WEB-INF/tuts/installtion.html";
-		File folder = new File(path);
-		System.out.println(folder.listFiles().toString());
 	}
 
 }
