@@ -21,6 +21,7 @@
 			<list>
 				<value>com.muletut.entity.Tutorial</value>
 				<value>com.muletut.entity.Reference</value>
+				<value>com.muletut.entity.Post</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">

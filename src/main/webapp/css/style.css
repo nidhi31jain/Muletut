@@ -26,10 +26,10 @@ header {
 }
 
 .navbar-default {
-	font:17px "DinPro", "openSans", Arial, Helvetica, sans-serif;
+	font: 17px "DinPro", "openSans", Arial, Helvetica, sans-serif;
 	font-weight: 300;
 	height: 7.5% !important;
-	background-color: #0077b5 !important;
+	background: #0077b5 !important;
 	border-color: transparent;
 	background-image: none;
 	box-shadow: none;
@@ -48,6 +48,11 @@ header .navbar-default .navbar-brand img.brand-logo {
 	margin-top: -12px !important;
 }
 
+header nav#navbar-header div#nav-menu-div {
+	background: #0077b5 !important;
+	overflow: hidden;
+}
+
 ul#nav-menu {
 	height: 100%;
 	line-height: 100%;
@@ -57,6 +62,15 @@ ul#nav-menu li a {
 	color: #fff;
 }
 
+/**********small***************/
+.navbar-default .navbar-toggle {
+	border-radius: 0px;
+	color: #fff;
+}
+
+.navbar-default .navbar-toggle:hover {
+	color: #0077b5;
+}
 /*************************************
 ********** Main Content **************
 **************************************/
@@ -209,21 +223,21 @@ div#main-content-blog div#posts-container a {
 
 div#main-content-blog div#posts-container #posts {
 	display: inline-block;
-	list-style:none;
+	list-style: none;
 	height: 130px;
 	padding: 10px;
 	margin-bottom: 5px;
 	color: #fff;
 	font: 19px "Helvetica Neue", Arial, Helvetica, sans-serif;
 	border: 10px solid #fff;
-	border-bottom:1px solid #fff;
+	border-bottom: 1px solid #fff;
 	text-transform: capitalize;
-/* 	background: #0077b5; */
+	/* 	background: #0077b5; */
 }
 
 div#main-content-blog div#posts-container #posts:hover {
 	/* 	box-shadow: 1px 1px 2px #fff; */
-	background:#006399;
+	background: #006399;
 }
 /******************************
 ********single page************
@@ -317,7 +331,7 @@ a#scroll-up {
 
 a#scroll-up span {
 	font-size: 40px;
-	color: #289dcc;
+	color: #0077b5;
 }
 
 a#scroll-up:hover {
@@ -328,6 +342,9 @@ a#scroll-up:hover {
 ********change window************
 *******************************/
 @media screen and (max-width: 758px) {
+	div#main-content aside {
+/* 		display:  */
+	}
 }
 /* @media screen and (min-width: 759px) { */
 /* 	div#main-content aside { */

@@ -5,8 +5,10 @@ $(function() {
 		var file = $(location).attr("href").split("/")[4].split("#")[0]
 		if(file == "blog.html"){
 			$("html, body").attr('style', 'background: #fff !important')
+			$("#mule-menu-button").hide();
 			HTMLSettings();			
 		} else if (file == "about.html"){
+			$("#mule-menu-button").hide();
 			HTMLSettings();			
 		} else {
 			var path = $(location).attr("href").split("#")[1];
@@ -210,7 +212,7 @@ $(function() {
 		$('a#scroll-up').click(function() {
 			$('body,html').animate({
 				scrollTop : 0
-			}, 100);
+			}, 800);
 			return false;
 		});
 	});

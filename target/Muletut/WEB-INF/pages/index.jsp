@@ -16,7 +16,6 @@
 <body>
 	<div id="main" class="container-fluid">
 		<%@ include file="header.jsp"%>
-		<%-- 		<c:import url="header.jsp"></c:import>	 --%>
 		<div id="main-content" class="container-fluid row">
 			<aside class="col-sm-3 container sidebar">
 				<div>
@@ -24,19 +23,19 @@
 						<c:forEach items="${menuItems}" var="item" varStatus="status">
 							<li ${status.first ? 'class="active first"' : '' }><a
 								href="#${item}">Mule - ${fn:replace(item,"-", " ")}</a></li>
-							<%-- 							<li ${status.first ? 'class="active first"' : '' }><a --%>
-							<%-- 								href="#${item}">Mule - ${item}</a></li> --%>
 						</c:forEach>
 					</ul>
 				</div>
 			</aside>
 			<div class="col-sm-9" id="post">
-				<div id="post-area">
-					<div class="loader">
-						<div>
-							<img src="images/loader.png" class="img-responsive">
-						</div>
-					</div>
+<!-- 				<div class="col-sm-9 loader"> -->
+<!-- 					<div class = "col-sm-offset-3 col-sm-9 "> -->
+<!-- 						<p id="loading-msg"> -->
+<!-- 							Loading<br>Please Wait -->
+<!-- 						</p> -->
+<!-- 					</div> -->
+<!-- 				</div> -->
+				<div id="post-area" class = "col-xs-12">
 					<h2 class="title"></h2>
 					<hr class="dotted-line">
 					<div id="post-content"></div>
@@ -48,9 +47,6 @@
 				</ul>
 			</div>
 		</div>
-		<!-- 		<a href="#page" id="scroll-up"><span -->
-		<!-- 			class="glyphicon glyphicon-chevron-up"></span></a> -->
-
 		<%@ include file="footer.jsp"%>
 	</div>
 </body>

@@ -47,9 +47,6 @@
 				</ul>
 			</div>
 		</div>
-		<!-- 		<a href="#page" id="scroll-up"><span -->
-		<!-- 			class="glyphicon glyphicon-chevron-up"></span></a> -->
-
 		<%@ include file="footer.jsp"%>
 	</div>
 </body>

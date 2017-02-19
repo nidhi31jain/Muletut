@@ -1,10 +1,11 @@
 com\muletut\controller\MuletutController.class
 com\muletut\dto\SearchForm.class
-com\muletut\exceptions\ResourceNotFoundException.class
 com\muletut\dao\DaoServiceImpl.class
+com\muletut\entity\Post.class
 com\muletut\dao\DaoService.class
 com\muletut\exceptions\MuletutException.class
 com\muletut\entity\Reference.class
+com\muletut\controller\PageNotFoundErrorController.class
 com\muletut\service\MuletutServiceImpl.class
 com\muletut\entity\Tutorial.class
 com\muletut\service\MuletutService.class
