@@ -66,4 +66,6 @@ public interface MuletutService {
 	 */
 	String readPost(String title) throws MuletutException;
 
+	ArrayList<String> getBlogPostsForSingle(String postName) throws MuletutException;
+
 }

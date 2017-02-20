@@ -2,7 +2,6 @@ package com.muletut.dao;
 
 import java.util.ArrayList;
 
-import com.muletut.entity.Tutorial;
 import com.muletut.exceptions.MuletutException;
 
 /**
@@ -59,5 +58,7 @@ public interface DaoService {
 	 * @throws MuletutException
 	 */
 	ArrayList<String> getBlogPosts() throws MuletutException;
+
+	ArrayList<String> getBlogPostsForSingle(String postName) throws MuletutException;
 
 }

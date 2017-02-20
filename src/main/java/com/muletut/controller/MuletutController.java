@@ -4,16 +4,13 @@ import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.HandlerMapping;
 
 import com.muletut.dto.SearchForm;
@@ -156,27 +153,23 @@ public class MuletutController {
 
 	/**
 	 * Method to fetch post page
+	 * 
 	 * @param model
 	 * @param request
 	 * @return
 	 */
 	@RequestMapping("*.htm")
 	public String getPost(ModelMap model, HttpServletRequest request) {
-		String path = (String) request.getAttribute(
-	            HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+		String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
+		String postName = path.split("\\.")[0];
 		ArrayList<String> posts;
-		System.out.println(path);
 		try {
 			SearchForm searchForm = new SearchForm();
-			if (muletutService.addBlogPosts()) {
-				posts = muletutService.getBlogPosts();
-				model.addAttribute("search", searchForm);
-				model.addAttribute("posts", posts);
-				model.addAttribute("title", path);
-				return "single";
-			} else {
-				return "redirect: error.html";
-			}
+			posts = muletutService.getBlogPostsForSingle(postName);
+			model.addAttribute("search", searchForm);
+			model.addAttribute("posts", posts);
+			model.addAttribute("postName", postName);
+			return "single";
 		} catch (MuletutException e) {
 			e.printStackTrace();
 			return "redirect: error.html";

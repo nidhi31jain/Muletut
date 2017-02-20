@@ -140,15 +140,29 @@ public class DaoServiceImpl implements DaoService {
 		return getMenu(table);
 	}
 
+	/************* Get Blog Posts For Single ***************/
+	public ArrayList<String> getBlogPostsForSingle(String postName) throws MuletutException {
+		String table = "Post";
+		return getMenu(table, postName);
+	}
+
 	/************* Get Menu Items ***************/
-	private ArrayList<String> getMenu(String table) throws MuletutException {
+	private ArrayList<String> getMenu(String table, String... values) throws MuletutException {
 		Session session = null;
 		Transaction transaction = null;
 		try {
 			session = sessionFactory.openSession();
 			transaction = session.beginTransaction();
 			List<String> items = new ArrayList<String>();
-			Query itemQuery = session.createQuery("SELECT T.name FROM " + table + " T");
+			String query;
+			Query itemQuery;
+			query = "SELECT T.name FROM " + table + " T";
+			itemQuery = session.createQuery(query);
+			if (values.length != 0) {
+				query = "SELECT T.name FROM " + table + " T WHERE T.name != '" + values[0] + "' ORDER BY RAND()";
+				itemQuery = session.createQuery(query).setMaxResults(10);
+			}
+			System.out.println("ABHAY"+query);
 			for (Object item : itemQuery.list()) {
 				items.add(item.toString().replaceAll("\\s", "-"));
 			}
@@ -163,5 +177,4 @@ public class DaoServiceImpl implements DaoService {
 			session.close();
 		}
 	}
-
 }

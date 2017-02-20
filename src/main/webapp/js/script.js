@@ -34,16 +34,24 @@ $(function() {
 
 	/** ***********Load Post************ */
 	function loadPost() {
-		var title = $("div#main-content-single div#post-area h2.title").text()
-				.split(".")[0];
-		var color = $("div#main-content-single aside ul #posts").filter(
-				function() {
-					return $(this).text() === title
-				}).css('background');
-		$("div#main-content-single div#post-area div#heading").css(
-				'background',
-				color.substring(0, parseInt(color.indexOf(")")) + 1))
+		var title = $("div#main-content-single div#post-area h2.title").text();
+//		var color = $("div#main-content-single aside ul #posts").filter(
+//				function() {
+//					return $(this).text() === title
+//				}).css('background');
+//		$("div#main-content-single div#post-area div#heading").css(
+//				'background',
+//				color.substring(0, parseInt(color.indexOf(")")) + 1))
+		
+		var colors = [ "#99b433", "#00a300", "#1e7145", "#ff0097",
+						"#9f00a7", "#7e3878", "#00aba9", "#ffc40d", "#e3a21a",
+						"#da532c", "#ee1111", "#b91d47", "#673AB7", "#ff66c2" ];
 
+		$("div#main-content-single div#post-area div#heading").each(function() {
+			var rand = Math.floor(Math.random() * colors.length);
+			$(this).css('background', colors[rand]);
+		})
+		
 		var request = $.ajax({
 			url : "post.html",
 			type : "GET",

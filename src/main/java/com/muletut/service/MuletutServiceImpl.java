@@ -78,6 +78,11 @@ public class MuletutServiceImpl implements MuletutService {
 		return blogPosts;
 	}
 	
+	/************* Get Blog Posts for single page***************/
+	public ArrayList<String> getBlogPostsForSingle(String postName) throws MuletutException {
+		ArrayList<String> blogPosts = daoService.getBlogPostsForSingle(postName);
+		return blogPosts;
+	}
 	/******************** Read post *****************/
 	public String readPost(String title) throws MuletutException {
 		String type = "posts";
