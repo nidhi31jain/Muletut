@@ -1,4 +1,3 @@
-
 <%@ include file="header.jsp"%>
 <div id="main-content-single" class="col-xs-12 row">
 	<aside id="post-area" class="col-md-3 hidden-xs hidden-sm">

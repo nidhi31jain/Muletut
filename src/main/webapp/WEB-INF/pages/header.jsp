@@ -15,7 +15,6 @@
 </head>
 <body>
 	<div id="main" class="container-fluid">
-
 		<!-- 		HEADER -->
 		<header class="col-xs-12">
 			<nav id="navbar-header"

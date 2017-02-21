@@ -261,6 +261,7 @@ div#main-content-single aside ul {
 }
 div#main-content-single aside ul #posts {
 	border:none;
+	height:100px;
 }
 
 div#main-content-single div#post {

@@ -1,8 +1,7 @@
 
 <%@ include file="header.jsp"%>
 <div id="main-content-about" class="col-xs-12">
-	<div class="col-sm-1" id="right-sidebar-single"></div>
-	<div class="col-sm-10" id="post">
+	<div class="col-sm-10 col-sm-offset-1" id="post">
 		<div id="post-area" class="col-sm-12">
 			<div id="post-content" class="col-sm-12">
 				<img src="images/bfma-1.JPG"
@@ -13,7 +12,6 @@
 			</div>
 		</div>
 	</div>
-	<div class="col-sm-1" id="left-sidebar-single"></div>
 </div>
 <%@ include file="footer.jsp"%>
 </div>

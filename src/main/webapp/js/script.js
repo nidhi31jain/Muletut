@@ -2,56 +2,45 @@ $(function() {
 	mapURL();
 	/** ************URL mapping************** */
 	function mapURL() {
-		var file = $(location).attr("href").split("/")[4].split("#")[0]
+		alert("Asd")
+		var url = $(location).attr("href");
+		var file = url.split("/")[4].split("#")[0]
+		MenuSettings(url, file);
+		var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#ff66c2" ];
 		if (file == "index.html" || file == "" || file == "cloudhub.html") {
-			var path = $(location).attr("href").split("#")[1];
+			var path = url.split("#")[1];
 			if (path != null) {
 				var thisVar = $("div#main-content aside div ul li a[href='#"
 						+ path + "']");
 				var indexOfItem = $(thisVar).parent().index();
-				HTMLSettings();
 				loadFile(path, thisVar, indexOfItem);
 			}
 			if (typeof path == "undefined") {
-				HTMLSettings();
 				loadFile("", "", "");
 			}
+			miscFunctions();
 		} else if (file == "blog.html") {
 			$("html, body").attr('style', 'background: #fff !important')
 			$("#mule-menu-button").hide();
-			HTMLSettings();
-		} else if (file == "about.html") {
+			setColor(newColors);
+		} else if (file == "about.html" || file == "error.html"
+				|| document.body.contains(document.getElementById("code"))) {
 			$("#mule-menu-button").hide();
-			HTMLSettings();
+			$("#main").css('overflow', 'hidden')
 		} else {
-			var colors = [ "#99b433", "#00a300", "#1e7145", "#ff0097",
-					"#9f00a7", "#7e3878", "#00aba9", "#ffc40d", "#e3a21a",
-					"#da532c", "#ee1111", "#b91d47", "#673AB7", "#ff66c2" ];
-			setColor(colors);
+			setColor(newColors);
 			loadPost();
 		}
+		scroll();
 	}
 
 	/** ***********Load Post************ */
 	function loadPost() {
 		var title = $("div#main-content-single div#post-area h2.title").text();
-//		var color = $("div#main-content-single aside ul #posts").filter(
-//				function() {
-//					return $(this).text() === title
-//				}).css('background');
-//		$("div#main-content-single div#post-area div#heading").css(
-//				'background',
-//				color.substring(0, parseInt(color.indexOf(")")) + 1))
-		
-		var colors = [ "#99b433", "#00a300", "#1e7145", "#ff0097",
-						"#9f00a7", "#7e3878", "#00aba9", "#ffc40d", "#e3a21a",
-						"#da532c", "#ee1111", "#b91d47", "#673AB7", "#ff66c2" ];
-
-		$("div#main-content-single div#post-area div#heading").each(function() {
-			var rand = Math.floor(Math.random() * colors.length);
-			$(this).css('background', colors[rand]);
-		})
-		
+		var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#ff66c2" ];
+		var rand = Math.floor(Math.random() * newColors.length);
+		$("div#main-content-single div#post-area div#heading").css(
+				'background', newColors[rand]);
 		var request = $.ajax({
 			url : "post.html",
 			type : "GET",
@@ -118,7 +107,7 @@ $(function() {
 				$("div#post div#post-area h2.title").text(
 						titleOfItem.replace(/-/g, " "));
 				$("div#post-content").html(data);
-				setLinks(indexOfItem);
+				setNextPreviousLinks(indexOfItem);
 				if ($("div#post-content .post-code").length != 0) {
 					$("div#post-content .post-code").each(function(index) {
 						Prism.highlightElement($(".post-code")[index]);
@@ -132,7 +121,7 @@ $(function() {
 	}
 
 	/** ************ Setting links to next and previous buttons*************** */
-	function setLinks(indexOfItem) {
+	function setNextPreviousLinks(indexOfItem) {
 		var totalCount = $("div#main-content aside div ul li").length - 1;
 		var indexOfNext = "";
 		var indexOfPrevious = "";
@@ -157,22 +146,22 @@ $(function() {
 
 	}
 
-	/** ***********Sidebar Link**************** */
-	$("div#main-content aside div ul li a").click(function() {
-		setSidebarLinks(this);
-	})
-
-	/** ***********Function to Set Sidebar Link**************** */
-	function setSidebarLinks(thisVar) {
-		var titleOfItem = $(thisVar).attr("href").substring(1);
-		var indexOfItem = $(thisVar).parent().index();
-		loadFile(titleOfItem, thisVar, indexOfItem);
+	function miscFunctions() {
+		/** ***********Clicking Sidebar Link**************** */
+		$("div#main-content aside div ul li a").click(function() {
+			var titleOfItem = $(this).attr("href").substring(1);
+			var indexOfItem = $(this).parent().index();
+			loadFile(titleOfItem, this, indexOfItem);
+		})
+		/** ************Change Previous Link************ */
+		$("div#post ul.pager li.previous").click(function() {
+			changePreviousLink(this);
+		})
+		/** ************Change Next Link************ */
+		$("div#post ul.pager li.next").click(function() {
+			changeNextLink(this);
+		})
 	}
-
-	/** ************Change Previous Link************ */
-	$("div#post ul.pager li.previous").click(function() {
-		changePreviousLink(this);
-	})
 
 	/** ************Function to change Previous Link************ */
 	function changePreviousLink(thisVar) {
@@ -188,11 +177,6 @@ $(function() {
 			loadFile(titleOfItem, thisVar, indexOfPreviousItem);
 		}
 	}
-
-	/** ************Change Next Link************ */
-	$("div#post ul.pager li.next").click(function() {
-		changeNextLink(this);
-	})
 
 	/** ************Function to Change Next Link************ */
 	function changeNextLink(thisVar) {
@@ -210,29 +194,13 @@ $(function() {
 		}
 	}
 
-	/** ************Function for HTML Settings************** */
-	function HTMLSettings() {
-		var file = $(location).attr("href").split("#")[0].split("/")[4];
+	/** ************Function for Menu Settings************** */
+	function MenuSettings(url, file) {
 		if (file != "") {
 			$("header nav#navbar-header ul#nav-menu li.active").removeClass(
 					"active");
 			$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
 					.parent().addClass("active");
-			if (file == "about.html" || file == "error.html") {
-				$("#main").css('overflow', 'hidden')
-			} else if (file == "blog.html") {
-				var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#0077b5",
-						"#ff66c2" ];
-				setColor(newColors);
-				$("div#main-content-blog div#posts-container #posts").hover(
-						function() {
-							var color = $(this).css('background');
-							var rgbValue = color.substring(0, parseInt(color
-									.indexOf(")")) + 1);
-						}, function() {
-
-						})
-			}
 		}
 	}
 
@@ -244,11 +212,10 @@ $(function() {
 	}
 
 	/** ***********Scroll*************** */
-	$("a#scroll-up").hide();
-	$(function() {
+	function scroll() {
+		$("a#scroll-up").hide();
 		$(window).scroll(function() {
 			if ($(this).scrollTop() > 100) {
-
 				$('a#scroll-up').fadeIn();
 			} else {
 				$('a#scroll-up').fadeOut();
@@ -260,5 +227,5 @@ $(function() {
 			}, 800);
 			return false;
 		});
-	});
+	}
 })
