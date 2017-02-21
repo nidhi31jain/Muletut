@@ -2,22 +2,21 @@ $(function() {
 	mapURL();
 	/** ************URL mapping************** */
 	function mapURL() {
-		alert("Asd")
 		var url = $(location).attr("href");
 		var file = url.split("/")[4].split("#")[0]
 		MenuSettings(url, file);
 		var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#ff66c2" ];
 		if (file == "index.html" || file == "" || file == "cloudhub.html") {
-			var path = url.split("#")[1];
-			if (path != null) {
-				var thisVar = $("div#main-content aside div ul li a[href='#"
+			var path = url.includes("#") ? url.split("#")[1] : "";
+			var thisVar = "";
+			var indexOfItem = "";
+			if (path != "") {
+				thisVar = $("div#main-content aside div ul li a[href='#"
 						+ path + "']");
-				var indexOfItem = $(thisVar).parent().index();
-				loadFile(path, thisVar, indexOfItem);
+				indexOfItem = $(thisVar).parent().index();
 			}
-			if (typeof path == "undefined") {
-				loadFile("", "", "");
-			}
+			alert(path+","+thisVar+","+indexOfItem);
+			loadFile(path, thisVar, indexOfItem);
 			miscFunctions();
 		} else if (file == "blog.html") {
 			$("html, body").attr('style', 'background: #fff !important')
