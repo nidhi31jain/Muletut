@@ -1,5 +1,6 @@
 package com.muletut.controller;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.HandlerMapping;
+import org.springframework.web.util.UriUtils;
 
 import com.muletut.dto.SearchForm;
 import com.muletut.exceptions.MuletutException;
@@ -158,8 +160,10 @@ public class MuletutController {
 	 * @param request
 	 * @return
 	 */
+	@SuppressWarnings("deprecation")
 	@RequestMapping("*.htm")
 	public String getPost(ModelMap model, HttpServletRequest request) {
+		String url = request.getRequestURL().toString();
 		String path = (String) request.getAttribute(HandlerMapping.PATH_WITHIN_HANDLER_MAPPING_ATTRIBUTE);
 		String postName = path.split("\\.")[0];
 		ArrayList<String> posts;
@@ -169,6 +173,7 @@ public class MuletutController {
 			model.addAttribute("search", searchForm);
 			model.addAttribute("posts", posts);
 			model.addAttribute("postName", postName);
+			model.addAttribute("url", URLEncoder.encode(url));
 			return "single";
 		} catch (MuletutException e) {
 			e.printStackTrace();

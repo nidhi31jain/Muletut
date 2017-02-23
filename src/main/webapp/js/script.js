@@ -4,7 +4,7 @@ $(function() {
 	function mapURL() {
 		var url = $(location).attr("href");
 		var file = url.split("/")[4].split("#")[0];
-		MenuSettings(url, file);
+		if (file != "") MenuSettings(url, file);
 		var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#ff66c2" ];
 		if (file == "index.html" || file == "" || file == "cloudhub.html") {
 			var path = url.includes("#") ? url.split("#")[1] : "";
@@ -56,11 +56,11 @@ $(function() {
 						Prism.highlightElement($(".post-code")[index]);
 					})
 				}
-				gapi.comments.render('comments', {
-					href : window.location,
-					first_party_property : 'BLOGGER',
-					view_type : 'FILTERED_POSTMOD'
-				});
+//				gapi.comments.render('comments', {
+//					href : window.location,
+//					first_party_property : 'BLOGGER',
+//					view_type : 'FILTERED_POSTMOD'
+//				});
 			},
 			error : function() {
 			}
@@ -197,12 +197,10 @@ $(function() {
 
 	/** ************Function for Menu Settings************** */
 	function MenuSettings(url, file) {
-		if (file != "") {
 			$("header nav#navbar-header ul#nav-menu li.active").removeClass(
 					"active");
 			$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
 					.parent().addClass("active");
-		}
 	}
 
 	function setColor(colors) {

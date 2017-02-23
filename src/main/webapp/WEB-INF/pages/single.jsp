@@ -18,6 +18,19 @@
 			<li class="previous"><a href="#">Previous</a></li>
 			<li class="next"><a href="#">Next</a></li>
 		</ul>
+		<nav id="share-icons">
+			<a class="share-buttons share linkedin"
+				href="https://www.linkedin.com/shareArticle?mini=true&url=${url}&title=ABHAY&summary=&source="
+				target="_blank"><i class="fa fa-linkedin"></i> LinkedIn</a>
+			<a class="share-buttons share twitter" href="#" target="_blank"><i
+				class="fa fa-twitter"></i> Tweet</a>
+			<a class="share-buttons share facebook" href="#" target="_blank"><i
+				class="fa fa-facebook"></i> Share</a>
+			<a class="share-buttons share gplus" href="#" target="_blank"><i
+				class="fa fa-google-plus"></i> Share</a>
+			<a class="share-buttons share stumbleupon" href="#" target="_blank"><i
+				class="fa fa-stumbleupon"></i> Stumble</a>
+		</nav>
 		<div id="comments" class="col-xs-12"></div>
 	</div>
 </div>
