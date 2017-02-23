@@ -1,4 +1,3 @@
-
 <%@ include file="header.jsp"%>
 <div id="main-content-about" class="col-xs-12">
 	<div class="col-sm-10 col-sm-offset-1" id="post">

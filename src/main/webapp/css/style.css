@@ -82,33 +82,33 @@ div#main-content {
 /*************************************
 ************** Sidebar ***************
 **************************************/
-div#main-content aside {
+div#main-content nav {
 	background: #f4f5f6;
 	height: auto;
 	padding-right: 0px;
 	padding-left:0px;
 }
 
-div#main-content aside div {
+div#main-content nav div {
 }
 
-div#main-content aside div ul {
+div#main-content nav div ul {
 	list-style: none;
 	margin: 0;
 }
 
-div#main-content aside div ul li {
+div#main-content nav div ul li {
 	padding: 10px 0px 15px;
 }
 
-div#main-content aside div ul li a {
+div#main-content nav div ul li a {
 	text-transform: capitalize;
 	text-decoration: none;
 	color: #000;
 	display: block;
 }
 
-div#main-content aside div ul li.active {
+div#main-content nav div ul li.active {
 	background: #fff;
 	border: 1px solid #0077b5;
 	border-right: 0px;
@@ -118,23 +118,23 @@ div#main-content aside div ul li.active {
 	font-size: 16px;
 }
 
-div#main-content aside div ul li a.active {
+div#main-content nav div ul li a.active {
 	text-decoration: none;
 	color: #0077b5;
 }
 
-div#main-content aside div ul li.active.first {
+div#main-content nav div ul li.active.first {
 	border-top: 0px;
 	border-top-left-radius: 0px;
 }
 /*************************************
 ************** Content ***************
 **************************************/
-div#main-content div#post {
+div#main-content div#post-container {
 	height: auto;
 }
 
-div#main-content div#post div#post-area {
+div#main-content div#post-container #post-area {
 	background: #fff;
 	height: auto;
 	font-family: "OpenSans", Helvetica, Arial, sans-serif;
@@ -142,13 +142,13 @@ div#main-content div#post div#post-area {
 	word-spacing: 2px !important;
 }
 /***************Loader************/
-div#main-content div#post div.loader {
+div#main-content div#post-container div.loader {
 	display: block !important;
 	position: fixed;
 	background: rgba(0, 119, 181, .7);
 }
 
-div#main-content div#post div.loader div {
+div#main-content div#post-container div.loader div {
 	height: 150px;
 	width: 150px;
 	background: red;
@@ -157,7 +157,7 @@ div#main-content div#post div.loader div {
 	font-size: 32px;
 }
 /******************Article******************/
-div#post div#post-area h2.title {
+div#post-container #post-area h2.title {
 	text-transform: capitalize;
 }
 
@@ -166,29 +166,29 @@ hr.dotted-line {
 	border-top: 2px dotted #f4f5f6;
 }
 
-div#main div#post div#post-area .alert {
+div#main div#post-container #post-area .alert {
 	margin-top: 10px;
 }
 
-div#main div#post div#post-content {
+div#main div#post-container #post-content {
 	white-space: pre-line;
 }
 
-div#main div#post div#post-area div#post-content ul.post-list {
+div#main div#post-container #post-area #post-content ul.post-list {
 	margin: 20px;
 }
 
-div#main div#post div#post-area div#post-content ul.post-list li
+div#main div#post-container #post-area #post-content ul.post-list li
 	{
 	padding: 5px;
 }
 
-div#main div#post div#post-area div#post-content img.post-img {
+div#main div#post-container #post-area #post-content img.post-img {
 	display: block;
 	margin: 10px;
 }
 
-div#main div#post div#post-area div#post-content pre {
+div#main div#post-container #post-area #post-content pre {
 	color: #fff;
 	background: #f4f5f6;
 	padding: 0.1em 0.5em 0.3em 0.7em;
@@ -224,7 +224,7 @@ div#main-content-blog div#posts-container #posts {
 	display: inline-block;
 }
 
-div#main-content-blog div#posts-container #posts, div#main-content-single aside ul #posts
+div#main-content-blog div#posts-container #posts, div#main-content-single nav ul #posts
 	{
 	list-style: none;
 	height: 130px;
@@ -245,36 +245,35 @@ div#main-content-blog div#posts-container #posts:hover {
 /******************************
 ********single page************
 *******************************/
-
-div#main-content-single aside{
+div#main-content-single nav{
 	height: auto;
 	padding-right: 0px;
 	padding-left:0px;
 	border-right:10px solid #0077b5;
 }
 
-div#main-content-single aside ul {
+div#main-content-single nav ul {
 	list-style: none;
 	margin: 0;
 /* 	background:pink; */
 	padding:0px;
 }
-div#main-content-single aside ul #posts {
+div#main-content-single nav ul #posts {
 	border:none;
 	height:100px;
 }
 
-div#main-content-single div#post {
+div#main-content-single div#post-container {
 	background: #fff;
 }
 
-div#main-content-single div#post div#heading {
+div#main-content-single div#post-container div#heading {
 	height: 100px;
 	background: #f4f5f6;
 	color:#fff;
 }
 
-div#main-content-single div#post div#post-content {
+div#main-content-single div#post-container #post-content {
 	margin-top: 5px;
 	padding: 20px;
 	font-family: "OpenSans", Helvetica, Arial, sans-serif;
@@ -331,7 +330,7 @@ div#main-content-error div#error {
 	font-size: 32px;
 }
 
-div#error p#code {
+div#error p#error-code {
 	font-size: 180px;
 }
 
@@ -343,7 +342,7 @@ div#error p#message {
 }
 /*****************Scroll*****************/
 a#scroll-up {
-	bottom: 20px;
+	bottom: 70px;
 	position: fixed;
 	right: 20px;
 	display: none;
@@ -365,7 +364,7 @@ a#scroll-up:hover {
 ********change window************
 *******************************/
 @media screen and (max-width: 758px) {
-	div#main-content aside {
+	div#main-content nav {
 		/* 		display:  */
 		
 	}

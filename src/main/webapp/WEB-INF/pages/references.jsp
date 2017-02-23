@@ -1,4 +1,3 @@
-
 <%@ include file="header.jsp"%>
 <div id="main-content" class="container-fluid row">
 	<aside class="col-sm-3 container sidebar">

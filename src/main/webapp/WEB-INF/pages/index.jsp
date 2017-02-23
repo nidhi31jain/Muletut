@@ -1,7 +1,6 @@
-
 <%@ include file="header.jsp"%>
 <div id="main-content" class="container-fluid row">
-	<aside class="col-sm-3 container sidebar">
+	<nav class="col-sm-3 container sidebar">
 		<div>
 			<ul id="mule-menu">
 				<c:forEach items="${menuItems}" var="item" varStatus="status">
@@ -10,8 +9,8 @@
 				</c:forEach>
 			</ul>
 		</div>
-	</aside>
-	<div class="col-sm-9" id="post">
+	</nav>
+	<div class="col-sm-9" id="post-container">
 		<!-- 				<div class="col-sm-9 loader"> -->
 		<!-- 					<div class = "col-sm-offset-3 col-sm-9 "> -->
 		<!-- 						<p id="loading-msg"> -->
@@ -19,11 +18,11 @@
 		<!-- 						</p> -->
 		<!-- 					</div> -->
 		<!-- 				</div> -->
-		<div id="post-area" class="col-xs-12">
+		<article id="post-area" class="col-xs-12">
 			<h2 class="title"></h2>
 			<hr class="dotted-line">
-			<div id="post-content"></div>
-		</div>
+			<article id="post-content"></article>
+		</article>
 		<hr>
 		<ul class="pager">
 			<li class="previous"><a href="#">Previous</a></li>

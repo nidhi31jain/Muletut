@@ -2,8 +2,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="shortcut icon" type="image/png" href="images/logo.png" />
 <meta charset="UTF-8">
+<link rel="shortcut icon" type="image/png" href="images/logo.png" />
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>

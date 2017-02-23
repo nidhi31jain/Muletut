@@ -1,4 +1,3 @@
-
 <%@ include file="header.jsp"%>
 <div id="main-content-blog" class="container-fluid row col-xs-12">
 	<div class="col-md-10 col-sm-12 col-md-offset-1" id="posts-container">
