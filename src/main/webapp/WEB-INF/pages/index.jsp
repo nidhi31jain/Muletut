@@ -11,13 +11,13 @@
 		</div>
 	</nav>
 	<div class="col-sm-9" id="post-container">
-		<!-- 				<div class="col-sm-9 loader"> -->
-		<!-- 					<div class = "col-sm-offset-3 col-sm-9 "> -->
-		<!-- 						<p id="loading-msg"> -->
-		<!-- 							Loading<br>Please Wait -->
-		<!-- 						</p> -->
-		<!-- 					</div> -->
-		<!-- 				</div> -->
+<!-- 		<div class="col-sm-9 loader"> -->
+<!-- 			<div class="col-sm-offset-3 col-sm-9 "> -->
+<!-- 				<p id="loading-msg"> -->
+<!-- 					Loading<br>Please Wait -->
+<!-- 				</p> -->
+<!-- 			</div> -->
+<!-- 		</div> -->
 		<article id="post-area" class="col-xs-12">
 			<h2 class="title"></h2>
 			<hr class="dotted-line">

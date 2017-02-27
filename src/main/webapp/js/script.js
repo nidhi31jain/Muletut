@@ -4,7 +4,8 @@ $(function() {
 	function mapURL() {
 		var url = $(location).attr("href");
 		var file = url.split("/")[4].split("#")[0];
-		if (file != "") MenuSettings(url, file);
+		if (file != "")
+			MenuSettings(url, file);
 		var newColors = [ "#7e3878", "#00aba9", "#b91d47", "#ff66c2" ];
 		if (file == "index.html" || file == "" || file == "cloudhub.html") {
 			var path = url.includes("#") ? url.split("#")[1] : "";
@@ -15,20 +16,23 @@ $(function() {
 						+ "']");
 				indexOfItem = $(thisVar).parent().index();
 			}
-
 			loadFile(path, thisVar, indexOfItem);
-			miscFunctions();
+			miscTutFunctions();
 		} else if (file == "blog.html") {
 			$("html, body").attr('style', 'background: #fff !important')
 			$("#mule-menu-button").hide();
 			setColor(newColors);
-		} else if (file == "about.html" || file == "error.html"
-				|| document.body.contains(document.getElementById("error-code"))) {
+		} else if (file == "about.html"
+				|| file == "error.html"
+				|| document.body
+						.contains(document.getElementById("error-code"))) {
 			$("#mule-menu-button").hide();
-			$("#main").css('overflow', 'hidden')
+			$("#main").css('overflow', 'hidden');
 		} else {
+			$("#mule-menu-button").hide();
 			setColor(newColors);
 			loadPost();
+			miscPostFunctions();
 		}
 		scroll();
 	}
@@ -56,16 +60,20 @@ $(function() {
 						Prism.highlightElement($(".post-code")[index]);
 					})
 				}
-//				gapi.comments.render('comments', {
-//					href : window.location,
-//					first_party_property : 'BLOGGER',
-//					view_type : 'FILTERED_POSTMOD'
-//				});
+				// gapi.comments.render('comments', {
+				// href : window.location,
+				// first_party_property : 'BLOGGER',
+				// view_type : 'FILTERED_POSTMOD'
+				// });
 			},
 			error : function() {
 			}
 		})
 	}
+
+	/***************************************************************************
+	 * ************************Functions for tutorials**********************
+	 **************************************************************************/
 
 	/** ***********Load File************ */
 	function loadFile(titleOfItem, thisVar, indexOfItem) {
@@ -121,7 +129,7 @@ $(function() {
 
 	}
 
-	/** ************ Setting links to next and previous buttons*************** */
+	/** ***** Setting links to next and previous buttons in tut****** */
 	function setNextPreviousLinks(indexOfItem) {
 		var totalCount = $("div#main-content nav div ul li").length - 1;
 		var indexOfNext = "";
@@ -148,7 +156,7 @@ $(function() {
 
 	}
 
-	function miscFunctions() {
+	function miscTutFunctions() {
 		/** ***********Clicking Sidebar Link**************** */
 		$("div#main-content nav div ul li a").click(function() {
 			var titleOfItem = $(this).attr("href").substring(1);
@@ -197,16 +205,31 @@ $(function() {
 
 	/** ************Function for Menu Settings************** */
 	function MenuSettings(url, file) {
-			$("header nav#navbar-header ul#nav-menu li.active").removeClass(
-					"active");
-			$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
-					.parent().addClass("active");
+		$("header nav#navbar-header ul#nav-menu li.active").removeClass(
+				"active");
+		$("header nav#navbar-header ul#nav-menu li a[href='" + file + "']")
+				.parent().addClass("active");
 	}
 
 	function setColor(colors) {
 		$("div#main ul #posts").each(function() {
 			var rand = Math.floor(Math.random() * colors.length);
 			$(this).css('background', colors[rand]);
+		})
+	}
+
+	/***************************************************************************
+	 * ************************Functions for posts**********************
+	 **************************************************************************/
+
+	function miscPostFunctions() {
+		/** ************Change Previous Link************ */
+		$("div#post-container ul.pager li.previous").click(function() {
+			changePreviousLink(this);
+		})
+		/** ************Change Next Link************ */
+		$("div#post-container ul.pager li.next").click(function() {
+			changeNextLink(this);
 		})
 	}
 

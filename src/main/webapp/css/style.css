@@ -146,16 +146,17 @@ div#main-content div#post-container #post-area {
 div#main-content div#post-container div.loader {
 	display: block !important;
 	position: fixed;
-	background: rgba(0, 119, 181, .7);
+	background: rgba(0, 119, 181, 1);
+	z-index:1;
 }
 
 div#main-content div#post-container div.loader div {
-	height: 150px;
-	width: 150px;
+	height: 300px;
+	width: 300px;
 	background: red;
-	margin: 25% auto;
+	margin: 15% auto;
 	color: #fff;
-	font-size: 32px;
+	font-size: 50px;
 }
 /******************Article******************/
 div#post-container #post-area h2.title {
@@ -235,11 +236,9 @@ div#main-content-blog div#posts-container #posts, div#main-content-single nav ul
 	border: 10px solid #fff;
 	border-bottom: 1px solid #fff;
 	text-transform: capitalize;
-	/* 	background: #0077b5; */
 }
 
 div#main-content-blog div#posts-container #posts:hover {
-	/* 	box-shadow: 1px 1px 2px #fff; */
 	background: #006399;
 }
 /******************************
@@ -287,7 +286,7 @@ div#main-content-single div#post-container #post-content {
 	display: block;
 	float: left;
 	padding: 10px 10px;
-	margin:3px;
+	margin: 3px;
 	border: none;
 	background: #ececec;
 	text-decoration: none;
@@ -295,7 +294,7 @@ div#main-content-single div#post-container #post-content {
 	color: #FFF;
 }
 
-.share-buttons:hover {
+.share-buttons:hover, .share-buttons:visited {
 	color: #efefef;
 	text-decoration: none;
 }
@@ -317,6 +316,10 @@ div#main-content-single div#post-container #post-content {
 }
 
 .linkedin {
+	background: #0077b5;
+}
+
+.slideshare {
 	background: #0077b5;
 }
 
@@ -383,7 +386,7 @@ div#error p#message {
 a#scroll-up {
 	bottom: 70px;
 	position: fixed;
-	right: 20px;
+	right: 30px;
 	display: none;
 	opacity: 0.5;
 	filter: alpha(opacity 50);
@@ -402,9 +405,9 @@ a#scroll-up:hover {
 /******************************
 ********change window************
 *******************************/
-@media screen and (max-width: 758px) {
+@media screen and (max-width: 768px) {
 	div#main-content nav {
-		/* 		display:  */
+		/* 				display:  */
 		
 	}
 }
