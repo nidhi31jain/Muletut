@@ -12,7 +12,9 @@
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 <link rel="stylesheet" href="prism/prism.css">
-<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+	rel="stylesheet">
 </head>
 <body>
 	<div id="main" class="container-fluid">
@@ -41,16 +43,20 @@
 							<!-- 					<li><a href="references.html">References</a></li> -->
 							<li><a href="blog.html">Blog</a></li>
 							<li><a href="about.html">About me</a></li>
-							<li><form:form commandName="search" action="search.html"
-									method="post" class="navbar-form" role="search">
+							<li class="form-item"><form:form commandName="search"
+									action="search.html" method="post" class="navbar-form"
+									role="search">
 									<div class="input-group">
 										<form:input path="searchString" name="searchString"
-											placeholder="Search" class="form-control" required="required" />
-										<div class="input-group-btn">
-											<button class="btn btn-default" type="submit">
-												<i class="glyphicon glyphicon-search"></i>
+											class="form-control pull-right"
+											placeholder="Search" required="required" />
+										<span class="input-group-btn">
+											<button type="submit" class="btn btn-default">
+												<span class="glyphicon glyphicon-search"> <span
+													class="sr-only">Search</span>
+												</span>
 											</button>
-										</div>
+										</span>
 									</div>
 								</form:form></li>
 						</ul>

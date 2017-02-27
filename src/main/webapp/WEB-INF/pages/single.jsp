@@ -27,9 +27,10 @@
 				href="https://twitter.com/share?url=${url}&text=${title}&via=Muletut"
 				target="_blank"><i class="fa fa-twitter"></i> Tweet</a> <a
 				class="share-buttons share facebook"
-				href="https://www.facebook.com/sharer.php?u=${url}&ext=${title}" target="_blank"><i
-				class="fa fa-facebook"></i> Share</a> <a
-				class="share-buttons share gplus" href="https://plus.google.com/share?url=${url}" target="_blank"><i
+				href="https://www.facebook.com/sharer.php?u=${url}&ext=${title}"
+				target="_blank"><i class="fa fa-facebook"></i> Share</a> <a
+				class="share-buttons share gplus"
+				href="https://plus.google.com/share?url=${url}" target="_blank"><i
 				class="fa fa-google-plus"></i> Share</a> <a
 				class="share-buttons share slideshare" href="#" target="_blank"><i
 				class="fa fa-slideshare"></i> Tweet</a> <a
